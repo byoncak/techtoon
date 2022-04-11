@@ -23,6 +23,34 @@ CREATE TABLE users (
 	user_role varchar(50) NOT NULL
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 )
+CREATE TABLE collections (
+	collection_id int IDENTITY(1,1) NOT NULL,
+	user_id int NOT NULL,
+	collection_name VARCHAR(50) NOT NULL,
+	is_public bit,
+	CONSTRAINT PK_collections PRIMARY KEY (collection_id),
+	CONSTRAINT FK_collection_user FOREIGN KEY (user_id) REFERENCES users (user_id)
+	)
+
+CREATE TABLE comics (
+	--maybe link this to the API id number
+	comic_id int IDENTITY(1,1) NOT NULL,
+	title varchar(50) NOT NULL,
+	issue_number int NOT NULL,
+	description varchar(max),
+	cover_img varchar(100),
+	CONSTRAINT PK_comics PRIMARY KEY (comic_id),
+	)
+CREATE TABLE comics_collections(
+	comic_id int,
+	collection_id int,
+	CONSTRAINT PK_comics_collections PRIMARY KEY (comic_id, collection_id),
+	CONSTRAINT FK_comics FOREIGN KEY (comic_id) REFERENCES comics (comic_id),
+	CONSTRAINT FK_collections FOREIGN KEY (collection_id) REFERENCES collections (collection_id)
+	)
+
+
+
 
 --populate default data
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
