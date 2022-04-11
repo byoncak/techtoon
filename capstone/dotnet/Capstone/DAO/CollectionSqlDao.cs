@@ -49,18 +49,33 @@ namespace Capstone.DAO
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    collection = CreateCollectionFromReader(reader);
+                    collection = GetCollectionFromReader(reader);
 
 
                 }
 
             }
-
+            return collection;
+        }
         public void AddToCollection(int comicId, int collectionId)
         {
 
 
 
+        }
+
+        private Collection GetCollectionFromReader(SqlDataReader reader)
+        {
+            Collection c = new Collection()
+            {
+                CollectionId = Convert.ToInt32(reader["collection_id"]),
+                UserId = Convert.ToInt32(reader["user_id"]),
+                CollectionName = Convert.ToString(reader["collection_name"]),
+                IsPublic = Convert.ToBoolean(reader["is_public"]),
+
+            };
+
+            return c;
         }
 
     }
