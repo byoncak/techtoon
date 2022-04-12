@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+// const http = axios.create({
+//   baseURL: "http://localhost:9001",
+// });
+
 export default {
 
   login(user) {
@@ -8,6 +12,9 @@ export default {
 
   register(user) {
     return axios.post('/register', user)
-  }
+  },
+
+
+
 
 }
