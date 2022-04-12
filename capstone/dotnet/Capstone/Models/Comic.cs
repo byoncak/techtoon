@@ -10,7 +10,7 @@ namespace Capstone.Models
         public int ComicId { get; set; }
         public string Title { get; set; }
         public int IssueNumber { get; set; }
-        public string Discription { get; set; }
+        public string Description { get; set; }
         public string CoverImage { get; set; }
 
     }

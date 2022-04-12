@@ -6,11 +6,12 @@ using Capstone.Models;
 
 namespace Capstone.DAO
 {
-    interface IComicDAO
+    public interface IComicDAO
     {
-        Comic GetComic(int comicId);
-        Comic GetComicByTitle(string title);
-        Comic GetComicByIssueNumber(int issueNumber);
+        public Comic GetComic(int comicId);
+        public Comic GetComicByTitle(string title);
+        public Comic GetComicByIssueNumber(int issueNumber);
+        public Comic CreateComic(Comic comic);
 
     }
 }
