@@ -85,9 +85,9 @@ namespace Capstone.DAO
             }
         }
 
-        public Collection GetCollectionByUser(string username)
+        public List<Collection> GetCollectionByUser(string username)
         {
-            Collection collection = null;
+            List<Collection> collections = new List<Collection>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -96,14 +96,15 @@ namespace Capstone.DAO
                                                 "WHERE u.username=@username", conn);
                 cmd.Parameters.AddWithValue("@username", username);
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                while (reader.Read())
                 {
-                    collection = GetCollectionFromReader(reader);
+                    Collection collection = GetCollectionFromReader(reader);
+                    collections.Add(collection);
 
                 }
 
             }
-            return collection;
+            return collections;
         }
 
         public List<Collection> GetCollectionByUserId(int userId)

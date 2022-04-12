@@ -35,18 +35,20 @@
       <button type="submit">Sign in</button>
     </form>
     <div>
+      <home-hero/>
       <comic-list/>
     </div>
   </div>
 </template>
 
 <script>
+import HomeHero from '../components/HomeHero.vue'
 import ComicList from '../components/ComicList.vue';
 import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: {ComicList},
+  components: {ComicList, HomeHero},
   data() {
     return {
       user: {
