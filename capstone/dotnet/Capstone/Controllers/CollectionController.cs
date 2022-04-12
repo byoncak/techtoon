@@ -22,27 +22,33 @@ namespace Capstone.Controllers
             collectionDao = _collectionDao;
         }
 
-        [HttpGet()]
-        //List of collections is public
+        [HttpGet("/collections/my-collections")]
+        public List<Collection> GetMyCollections()
+        {
+            string userId = User.FindFirst("sub").Value;
+            //int.TryParse(userId, out int userNumber);
+            int userNumber = Convert.ToInt32(userId);
+            return collectionDao.GetCollectionByUserId(userNumber);
+        }
 
-        //public int GetCurrentUser()
-        //{
-        //    string userId = User.FindFirst("sub").Value;
-        //    int.TryParse(userId, out int userNumber);
-        //    return userNumber;
-        //}
+        [HttpGet("{userName}")]
+        public List<Collection> GetCollectionsByName(string userName)
+        {
+            return collectionDao.GetCollectionByUser(userName);
+        }
 
-        [HttpGet()]
-        //list of "my" collection 
+        [HttpPost("/collection")]
+        public ActionResult<Collection> CreateCollection(Collection collection)
+        {
+            Collection added = collectionDao.CreateCollection(collection);
+            return Created($"/collection/{added.CollectionId}", added); //Double Check this endpoint.
+        }
 
-        [HttpGet()]
-        //other user collection 
 
-        [HttpPost]
-        //create the collection 
+        
 
-        [HttpDelete]
-        //THIS IS A TEST FOR PUSHING FROM 2 PLACES
+        
+        
 
     }
 }

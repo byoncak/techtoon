@@ -29,6 +29,7 @@ namespace Capstone.DAO
                 cmd.Parameters.AddWithValue("@title", comic.Title);
                 cmd.Parameters.AddWithValue("@issue_number", comic.IssueNumber);
                 cmd.Parameters.AddWithValue("@description", comic.Description);
+                cmd.Parameters.AddWithValue("@marvel_id", comic.MarvelId);
 
                 newComicId = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -94,6 +95,7 @@ namespace Capstone.DAO
                 Title = Convert.ToString(reader["title"]),
                 IssueNumber = Convert.ToInt32(reader["issue_number"]),
                 Description = Convert.ToString(reader["description"]),
+                MarvelId = Convert.ToInt32(reader["marvel_id"])
 
             };
 

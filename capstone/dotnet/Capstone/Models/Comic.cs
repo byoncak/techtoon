@@ -12,6 +12,7 @@ namespace Capstone.Models
         public int IssueNumber { get; set; }
         public string Description { get; set; }
         public string CoverImage { get; set; }
+        public int MarvelId { get; set; }
 
     }
 }

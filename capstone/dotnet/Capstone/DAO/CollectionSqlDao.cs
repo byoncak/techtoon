@@ -5,11 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 
+
 namespace Capstone.DAO
 {
     public class CollectionSqlDao : ICollectionDAO
     {
         private readonly string connectionString;
+
+        
 
         public CollectionSqlDao(string dbConnectionString)
         {
@@ -41,6 +44,8 @@ namespace Capstone.DAO
         public Collection GetCollection(int collectionId)
         {
             Collection collection = null;
+            
+            Comic comic = null;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -52,11 +57,19 @@ namespace Capstone.DAO
                     collection = GetCollectionFromReader(reader);
 
                 }
+                SqlCommand cmdTwo = new SqlCommand ("SELECT * FROM comics JOIN comics_collections cc ON comic.comic_id = cc.comic_id" +
+                    " Join collections c ON c.collection_id = cc.collection_id WHERE c.collection_id = @collection_id", conn);
+                SqlDataReader readerTwo = cmdTwo.ExecuteReader();
+                while (readerTwo.Read())
+                {
+                    comic = GetComicFromReader(reader);
+                    collection.ComicList.Add(comic);
+                }
 
             }
             return collection;
         }
-        public void AddToCollection(int comicId, int collectionId)
+        public void AddComicToCollection(int comicId, int collectionId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -93,8 +106,30 @@ namespace Capstone.DAO
             return collection;
         }
 
-        private Collection GetCollectionFromReader(SqlDataReader reader)
+        public List<Collection> GetCollectionByUserId(int userId)
+        {
+            List<Collection> collections = new List<Collection>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT c.collection_name FROM collections c " +
+                                                "JOIN users u ON c.user_id = u.user_id " +
+                                                "WHERE u.user_id=@user_id", conn);
+                cmd.Parameters.AddWithValue("@user_id", userId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Collection collection = GetCollectionFromReader(reader);
+                    collections.Add(collection);
+                    
+                }
+
+            }
+            return collections;
+        }
+
+        private Collection GetCollectionFromReader(SqlDataReader reader)
+        {
                 Collection c = new Collection()
                 {
                     CollectionId = Convert.ToInt32(reader["collection_id"]),
@@ -105,7 +140,23 @@ namespace Capstone.DAO
                 };
 
                 return c;
-            }
+        }
+
+        private Comic GetComicFromReader(SqlDataReader reader)
+        {
+            Comic comic = new Comic()
+            {
+                ComicId = Convert.ToInt32(reader["comic_id"]),
+                Title = Convert.ToString(reader["title"]),
+                IssueNumber = Convert.ToInt32(reader["issue_number"]),
+                Description = Convert.ToString(reader["description"]),
+                MarvelId = Convert.ToInt32(reader["marvel_id"])
+
+            };
+
+            return comic;
+        }
+
 
     }
 }
