@@ -36,6 +36,8 @@
     </form>
     <div>
       <home-hero/>
+    </div>
+    <div>
       <comic-list/>
     </div>
   </div>
@@ -43,12 +45,11 @@
 
 <script>
 import HomeHero from '../components/HomeHero.vue'
-import ComicList from '../components/ComicList.vue';
 import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: {ComicList, HomeHero},
+  components: {HomeHero},
   data() {
     return {
       user: {
