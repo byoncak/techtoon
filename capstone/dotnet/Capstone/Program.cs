@@ -6,7 +6,7 @@ namespace Capstone
 {
     public class Program
     {
-        private const string apiUrl = "https://localhost:44315/";
+        //private const string apiUrl = "https://localhost:44315/";
 
         public static void Main(string[] args)
         {

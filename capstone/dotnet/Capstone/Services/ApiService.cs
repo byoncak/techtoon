@@ -8,12 +8,12 @@ namespace Capstone.Services
 {
     public class ApiService
     {
-        public readonly string ApiUrl;
-        //dependency injection stuff
-        public ApiService(string apiUrl)
-        {
-            ApiUrl = apiUrl;
-        }
+        //public readonly string ApiUrl;
+        ////dependency injection stuff
+        //public ApiService(string apiUrl)
+        //{
+        //    ApiUrl = apiUrl;
+        //}
 
         //AddOrCreateComicLogic()
         //When adding comic if record already exitsts in db, only add line to join table to place in collection

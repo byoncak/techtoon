@@ -43,32 +43,32 @@ namespace Capstone.Controllers
             Collection added = collectionDao.CreateCollection(collection);
             return Created($"/collection/{added.CollectionId}", added); //Double Check this endpoint.
         }
-        [HttpPost()] //endpoint TBD
-        public void AddComicToCollection(Comic comic, Collection collection) //return type ok?
-        {
+        //[HttpPost()] //endpoint TBD
+        //public void AddComicToCollection(Comic comic, Collection collection) //return type ok?
+        //{
 
-            collectionDao.AddComicToCollection(comic.ComicId, collection.CollectionId);
-           
-            
-            //if comic doesn't exist in database
-            //comicdao.CreateComic THEN
-            //collectiondao.AddComicToCollection
+        //    collectionDao.AddComicToCollection(comic.ComicId, collection.CollectionId);
 
-        //    //if comic does exist in database
-        //    //ONLY DO collectiondao.AddComicToCollection
 
-        //    //STILL TO CONFIRM: proper method for acquiring marvel_ID at this stage from Marvel API
+        //    //if comic doesn't exist in database
+        //    //comicdao.CreateComic THEN
+        //    //collectiondao.AddComicToCollection
+
+        //    //    //if comic does exist in database
+        //    //    //ONLY DO collectiondao.AddComicToCollection
+
+        //    //    //STILL TO CONFIRM: proper method for acquiring marvel_ID at this stage from Marvel API
+
+        //    //}
+
+        //    //public ActionResult<>
+
+
+
+
+
 
         //}
-
-        //public ActionResult<>
-        
-
-
-
-
-
-
 
 
     }
