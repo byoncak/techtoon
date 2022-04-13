@@ -44,8 +44,12 @@ namespace Capstone.Controllers
             return Created($"/collection/{added.CollectionId}", added); //Double Check this endpoint.
         }
         [HttpPost()] //endpoint TBD
-        public ActionResult<Collection> AddComicToCollection(Comic comic, Collection collection)
+        public void AddComicToCollection(Comic comic, Collection collection) //return type ok?
         {
+
+            collectionDao.AddComicToCollection(comic.ComicId, collection.CollectionId);
+           
+            
             //if comic doesn't exist in database
             //comicdao.CreateComic THEN
             //collectiondao.AddComicToCollection
@@ -57,7 +61,7 @@ namespace Capstone.Controllers
 
         }
 
-        public ActionResult<>
+        //public ActionResult<>
         
 
 
