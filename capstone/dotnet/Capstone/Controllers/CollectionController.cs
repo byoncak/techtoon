@@ -25,7 +25,7 @@ namespace Capstone.Controllers
         [HttpGet("/collections/my-collections")]
         public List<Collection> GetMyCollections()
         {
-            string userId = User.FindFirst("sub").Value;
+            string userId = User.FindFirst("sub")?.Value;
             //int.TryParse(userId, out int userNumber);
             int userNumber = Convert.ToInt32(userId);
             return collectionDao.GetCollectionByUserId(userNumber);
