@@ -49,7 +49,7 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM collection WHERE collection_id = @collection_id", conn);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM collections WHERE collection_id = @collection_id", conn);
                 cmd.Parameters.AddWithValue("@collection_id", collectionId);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())

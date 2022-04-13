@@ -2,7 +2,7 @@
   <form v-on:submit.prevent="submitForm" class="collectionForm">
   <div class= "form-group">
       <label for="collection-name">Collection Name</label>
-      <input id="collection-name" type="text" class="form-control" v-model="collection.name" autocomplete="off" />
+      <input id="collection-name" type="text" class="form-control" v-model="collection.collectionName" autocomplete="off" />
   </div>
   <div class= "formGroup">
       <label for="is-public">Make This Collection Private</label>
@@ -22,7 +22,7 @@ export default {
     data(){
         return{
             collection:{
-                name:'',
+                collectionName:'',
                 isPublic:false,
             }
         }
@@ -31,6 +31,7 @@ export default {
         saveCollection(){
             localService.newCollection(this.collection).then(response => {
                 if(response.status ==201){
+                    console.log(this.collection)
                     this.$router.push("/");
                 }
             })

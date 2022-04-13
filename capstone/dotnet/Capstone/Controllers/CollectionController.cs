@@ -40,6 +40,9 @@ namespace Capstone.Controllers
         [HttpPost("/collection")]
         public ActionResult<Collection> CreateCollection(Collection collection)
         {
+            string userId = User.FindFirst("sub").Value;
+            int userNumber = Convert.ToInt32(userId);
+            collection.UserId = userNumber;
             Collection added = collectionDao.CreateCollection(collection);
             return Created($"/collection/{added.CollectionId}", added); //Double Check this endpoint.
         }

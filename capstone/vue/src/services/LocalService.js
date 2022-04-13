@@ -12,7 +12,7 @@ export default {
 //   },
 
 newCollection(collection){
-    return axios.post('/collections',collection);
+    return axios.post('/collection',collection);
   }, 
 
 }
