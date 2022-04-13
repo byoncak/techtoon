@@ -85,7 +85,7 @@ namespace Capstone.DAO
             }
         }
 
-        public List<Collection> GetCollectionByUser(string username)
+        public List<Collection> GetCollectionByUserName(string username)
         {
             List<Collection> collections = new List<Collection>();
             using (SqlConnection conn = new SqlConnection(connectionString))

@@ -22,14 +22,14 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO comics (title, issue_number, description) " +
+                SqlCommand cmd = new SqlCommand("INSERT INTO comics (title, marvel_id, issue_number, description) " +
                     "OUTPUT INSERTED.comic_id " +
-                    "VALUES (@title, @issue_number, @description);", conn);
+                    "VALUES (@title, @marvel_id, @issue_number, @description);", conn);
 
                 cmd.Parameters.AddWithValue("@title", comic.Title);
+                cmd.Parameters.AddWithValue("@marvel_id", comic.MarvelId);
                 cmd.Parameters.AddWithValue("@issue_number", comic.IssueNumber);
                 cmd.Parameters.AddWithValue("@description", comic.Description);
-                cmd.Parameters.AddWithValue("@marvel_id", comic.MarvelId);
 
                 newComicId = Convert.ToInt32(cmd.ExecuteScalar());
 

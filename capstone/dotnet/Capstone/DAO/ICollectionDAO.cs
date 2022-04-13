@@ -16,7 +16,7 @@ namespace Capstone.DAO
         //public int GetCollectionStats(int collectionId);
         //public int AggregateAllStats();
 
-        public List<Collection> GetCollectionByUser(string username);
+        public List<Collection> GetCollectionByUserName(string username);
 
         public List<Collection> GetCollectionByUserId(int userid);
 
