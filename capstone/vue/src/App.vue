@@ -21,7 +21,6 @@
   display: flex;
   padding-top: 16px;
   padding-right: 16px;
-  padding-bottom: 16px;
   font-size: .8em;
   justify-content: flex-end;
   font-family: Arial, Helvetica, sans-serif;

@@ -1,7 +1,8 @@
 <template>
   <div class="home-hero">
     <div class="home-title">
-        <p class="welcome">WELCOME!</p>
+        <img class="logo" :src="image"/>
+        <p>My Comics</p>
     </div>
     <div class="button-group">
     <div>
@@ -15,9 +16,15 @@
 </template>
 
 <script>
+
 export default {
-  name: "home-hero"
-};
+  name: "home-hero",
+  data(){ return {
+      image: require('../assets/TEchtoon.png')
+  }
+  
+  }
+}
 </script>
 
 <style>
@@ -34,9 +41,15 @@ export default {
     color:white;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 800;
-    font-size: 4em;
+    font-size: 3.2em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: 30vw;
+    margin: auto;
 }
 .home-buttons {
     display: inline-block;
@@ -58,5 +71,10 @@ export default {
 .button-group {
     display: flex;
     justify-content: center;
+}
+
+.logo {
+    margin-bottom: -1.6em;
+    width: 32vw;
 }
 </style>

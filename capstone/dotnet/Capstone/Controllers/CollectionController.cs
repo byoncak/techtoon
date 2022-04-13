@@ -54,22 +54,22 @@ namespace Capstone.Controllers
             //comicdao.CreateComic THEN
             //collectiondao.AddComicToCollection
 
-            //if comic does exist in database
-            //ONLY DO collectiondao.AddComicToCollection
-           
-            //STILL TO CONFIRM: proper method for acquiring marvel_ID at this stage from Marvel API
+        //    //if comic does exist in database
+        //    //ONLY DO collectiondao.AddComicToCollection
 
-        }
+        //    //STILL TO CONFIRM: proper method for acquiring marvel_ID at this stage from Marvel API
+
+        //}
 
         //public ActionResult<>
         
 
 
 
-        
 
-        
-        
+
+
+
 
     }
 }

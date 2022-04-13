@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Sign In to View Your Comics</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -12,6 +12,7 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
+      <div class="form-input">
       <label for="username" class="sr-only">Username</label>
       <input
         type="text"
@@ -31,6 +32,7 @@
         v-model="user.password"
         required
       />
+      </div>
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
       <button type="submit">Sign in</button>
     </form>
@@ -81,3 +83,26 @@ export default {
   }
 };
 </script>
+
+
+<style>
+.h3 {
+  display: flex;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  width: 16vw;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+</style>
