@@ -27,6 +27,7 @@ export default {
         marvelService.getComics().then(response => {
             response.data.data.results.forEach(item=>{
                 this.comics.push(item);
+                console.log(item)
                 });
             });
     }
@@ -49,7 +50,7 @@ export default {
 }
 
 .comic {
-align-items: flex-start;
+  align-items: flex-start;
   background-color: #15263F;
   color: #8BACD9;
   border-radius: 8px;

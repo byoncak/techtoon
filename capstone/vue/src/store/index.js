@@ -19,7 +19,11 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    newCollection:{
+      name:'',
+      isPublic:''
+    },
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +41,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-    }
+    },
+    SET_NEW_COLLECTION(state, data){
+      state.newCollection=data;
+    },
   }
 })

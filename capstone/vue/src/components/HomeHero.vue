@@ -8,7 +8,7 @@
         <router-link class="home-buttons" v-bind:to="{ name: 'comics-list' }">Browse Comics</router-link>    
     </div>
     <div>
-        <router-link class="home-buttons" v-bind:to="{ name: 'collections' }">Browse Collections</router-link>
+        <router-link class="home-buttons" v-bind:to="{ name: 'add-collection' }">Create Collection</router-link>
     </div>
     </div>
   </div>
