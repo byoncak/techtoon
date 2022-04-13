@@ -10,7 +10,7 @@ const http = axios.create({
 export default {
 
 getComics(){
-    return http.get(`/v1/public/comics?apikey=${public_key}`);
+    return http.get(`/v1/public/comics?format=comic&formatType=comic&orderBy=-focDate&apikey=${public_key}`);
 }
 
 }
