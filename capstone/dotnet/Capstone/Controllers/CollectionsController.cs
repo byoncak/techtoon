@@ -13,22 +13,33 @@ namespace Capstone.Controllers
     [Route("[controller]")]
     [ApiController]
     [Authorize]
-    public class CollectionController : ControllerBase
+    public class CollectionsController : ControllerBase
     {
         private readonly ICollectionDAO collectionDao;
 
-        public CollectionController(ICollectionDAO _collectionDao)
+        public CollectionsController(ICollectionDAO _collectionDao)
         {
             collectionDao = _collectionDao;
         }
 
-        [HttpGet("/collections/my-collections")]
+        [HttpGet("my-collections")]
         public List<Collection> GetMyCollections()
         {
             string userId = User.FindFirst("sub")?.Value;
             //int.TryParse(userId, out int userNumber);
             int userNumber = Convert.ToInt32(userId);
             return collectionDao.GetCollectionByUserId(userNumber);
+        }
+        [HttpGet("{id}")]
+        public Collection GetCollectionByCollectionID(int id)
+        {
+            return collectionDao.GetCollection(id);
+        }
+
+        [HttpGet("{userId}")]
+        public List<Collection> GetCollectionsByUserID(int userId)
+        {
+            return collectionDao.GetCollectionByUserId(userId);
         }
 
         [HttpGet("{userName}")]
@@ -37,14 +48,14 @@ namespace Capstone.Controllers
             return collectionDao.GetCollectionByUserName(userName);
         }
 
-        [HttpPost("/collections")]
+        [HttpPost()]
         public ActionResult<Collection> CreateCollection(Collection collection)
         {
             string userId = User.FindFirst("sub").Value;
             int userNumber = Convert.ToInt32(userId);
             collection.UserId = userNumber;
             Collection added = collectionDao.CreateCollection(collection);
-            return Created($"/collection/{added.CollectionId}", added); //Double Check this endpoint.
+            return Created($"/collection/{added.CollectionId}", added); 
         }
         //[HttpPost()] //endpoint TBD
         //public void AddComicToCollection(Comic comic, Collection collection) //return type ok?

@@ -57,7 +57,7 @@ namespace Capstone.DAO
                     collection = GetCollectionFromReader(reader);
 
                 }
-                SqlCommand cmdTwo = new SqlCommand ("SELECT * FROM comics JOIN comics_collections cc ON comic.comic_id = cc.comic_id" +
+                SqlCommand cmdTwo = new SqlCommand ("SELECT * FROM comics JOIN comics_collections cc ON comics.comic_id = cc.comic_id" +
                     " Join collections c ON c.collection_id = cc.collection_id WHERE c.collection_id = @collection_id", conn);
                 cmdTwo.Parameters.AddWithValue("@collection_id", collectionId);
                 SqlDataReader readerTwo = cmdTwo.ExecuteReader();
