@@ -114,7 +114,7 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT c.collection_name FROM collections c " +
+                SqlCommand cmd = new SqlCommand("SELECT * FROM collections c " +
                                                 "JOIN users u ON c.user_id = u.user_id " +
                                                 "WHERE u.user_id=@user_id", conn);
                 cmd.Parameters.AddWithValue("@user_id", userId);

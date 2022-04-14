@@ -37,7 +37,7 @@ namespace Capstone.Controllers
             return collectionDao.GetCollectionByUserName(userName);
         }
 
-        [HttpPost("/collection")]
+        [HttpPost("/collections")]
         public ActionResult<Collection> CreateCollection(Collection collection)
         {
             string userId = User.FindFirst("sub").Value;
