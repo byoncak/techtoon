@@ -27,5 +27,16 @@ namespace Capstone.Controllers
         {
             return comicDao.CreateComic(comic);
         }
+        [HttpGet()]
+        public List<Comic> GetListOfComics()
+        {
+            List<Comic> testList = new List<Comic>();
+
+        }
+        [HttpGet("{id}")]
+        public Comic GetComicDetails(int id)
+        {
+            
+        }
     }
 }

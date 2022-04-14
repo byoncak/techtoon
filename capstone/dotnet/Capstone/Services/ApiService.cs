@@ -22,7 +22,8 @@ namespace Capstone.Services
 
         //GetDetailsforFrontEndDisplay()
         //Goes gets relevenat details, put them somewhere through a controller to get at the front end
-
+        
+        //REST requests to marvel?
 
 
     }
