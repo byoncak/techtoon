@@ -2,6 +2,7 @@
 using Capstone.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Capstone.Services;
 
 namespace Capstone.Controllers
 {
@@ -11,10 +12,13 @@ namespace Capstone.Controllers
     public class ComicsController: ControllerBase
     {
         private readonly IComicDAO comicDao;
+        private ApiService apiService = new ApiService();
 
-        public ComicsController(IComicDAO _comicDao)
+        public ComicsController(IComicDAO _comicDao, ApiService _apiservice)
         {
             comicDao = _comicDao;
+            apiService = _apiservice;
+
         }
 
         [HttpPost()]
@@ -36,6 +40,7 @@ namespace Capstone.Controllers
         [HttpGet("{id}")]
         public Comic GetComicDetails(int id)
         {
+            //return apiService.GetComicDetailsfromMarvel(id);
             Comic c = new Comic(id, "Iron test", "https://cdn.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.webp");
             return c;
         }
