@@ -2,7 +2,7 @@
 <div class="comic-list-page">
     
   <div class="comic-list">
-      <div v-on:mouseover="hoverIn" class="comic animate" v-for="comic in comics" v-bind:key="comic.id"> 
+      <div class="comic" v-for="comic in comics" v-bind:key="comic.id"> 
         <div class="add-comic-btn">
         <button class="circle-btn" style="border-radius:100%;">
         <span class="inner-circle-btn">+</span>
@@ -66,13 +66,23 @@ export default {
 <style>
 
 .add-comic-btn{
-    display: flex;
-    margin-right: .4em;
-    justify-content: flex-end; 
-    margin-bottom: -5em;
+    align-content: flex-end;
+    justify-content: flex-end;
+}
+
+.circle-btn.active,
+.circle-btn:hover {
+    transition: background-color .2s ease-in;
+    background-color: cornflowerblue;
+    transition: height, width .2s ease-in-out;
+    height: 2em;
+    width: 2em;
+
 }
 
 .circle-btn {
+    transition: background-color .2s ease-in;
+    transition: height, width .2s ease-in-out;
     display: flex;
     height: 1.8em;
     width: 1.8em;
@@ -86,7 +96,7 @@ export default {
     box-shadow: 0 4px 12px 4px rgba(0, 0, 0, 1);
     border-radius: 1px;
     border-color: lightskyblue;
-    cursor:crosshair;
+    cursor:pointer;
 }
 
 
@@ -101,37 +111,31 @@ export default {
     flex-wrap: wrap;
 }
 
-.comic {
-  align-items: flex-start;
-  border-radius: 8px;
-  width: 216px;
-  height: 10.8em;
-  font-size: 1.5rem;
-  margin-top: 6em;
-  box-shadow: 0 6px 8px 2px rgba(0, 0, 0, 0.4);
-  z-index: 0;
+.comic:hover {
+    transition: margin .4s ease-in-out;
+    margin-top: 5em;
 }
 
-.cover {
-    cursor: pointer;
-    transition: margin 0.2s ease-in-out;
-    z-index: -2;
+.comic {
+  transition: margin .4s ease-in-out;
+  align-items: flex-start;
+  font-size: 1.5rem;
+  z-index: 0;
+  margin-top: 6em;
 }
 
 
 .comic-title {
     color: black;
     font-family: Arial, Helvetica, sans-serif;
-      font-size: 1rem;
-      font-weight: 00;
+      font-size: .95rem;
+      font-weight: 600;
       cursor: pointer;
 }
 
 
 .cover-img {
     border-radius: 8px;
-    width: 216px;
-    height: 324px;
     cursor: pointer;
     position: relative;
     z-index: -1;

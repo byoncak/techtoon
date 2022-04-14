@@ -69,11 +69,13 @@ input[type=text], select {
 .collectionForm {
     background-color: blueviolet;
     padding: 5em;
-    border-radius: ;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: 600;
     
 }
 

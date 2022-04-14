@@ -1,5 +1,8 @@
 <template>
   <div id="login" class="text-center">
+    <login-hero/>
+    <div class="bg">
+    <div class="form-center">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Sign In to View Your Comics</h1>
       <div
@@ -33,25 +36,21 @@
         required
       />
       </div>
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link class="link" :to="{ name: 'register' }">Need an account?</router-link>
       <button type="submit">Sign in</button>
     </form>
-    <div>
-      <home-hero/>
     </div>
-    <div>
-      <comic-list/>
     </div>
   </div>
 </template>
 
 <script>
-import HomeHero from '../components/HomeHero.vue'
+import LoginHero from '../components/LoginHero.vue'
 import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: {HomeHero},
+  components: {LoginHero},
   data() {
     return {
       user: {
@@ -86,21 +85,75 @@ export default {
 
 
 <style>
+
+.form-center{
+  display: flex;
+  justify-content: center;
+}
+
+.bg{
+
+}
+
+.link {
+  color:black
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .h3 {
+  margin-top: -3.2em;
   display: flex;
   justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
 
+.form-signin {
+
+    background-color: blueviolet;
+    padding: 5em;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: 600;
+    row-gap: 1em;
+    width: 24vw;
+    height: 12vh;
+    margin-bottom: 4.4em;
+}
+
 .form-input {
+  margin-top: 2em;
   display: flex;
   flex-direction: column;
-  max-width: 50%;
-  width: 16vw;
+  width: 24vw;
 }
 
 form {
+  background: white;
   display: flex;
   justify-content: center;
 }
