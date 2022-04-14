@@ -13,6 +13,10 @@ export default {
 
 newCollection(collection){
     return axios.post('/collection',collection);
-  }, 
+  },  
+
+updateComics(comic){
+  return axios.put('/comic', comic);
+}
 
 }

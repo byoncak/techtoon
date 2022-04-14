@@ -1,11 +1,11 @@
 <template>
   <form v-on:submit.prevent="submitForm" class="collectionForm">
   <div class= "form-group">
-      <label for="collection-name">Collection Name</label>
+      <label for="collection-name">Collection Name:</label>
       <input id="collection-name" type="text" class="form-control" v-model="collection.collectionName" autocomplete="off" />
   </div>
   <div class= "formGroup">
-      <label for="is-public">Make This Collection Private</label>
+      <label for="is-public">Make Private:</label>
       <input id="is-public" type="checkbox" class="form-control" v-model="collection.isPublic" />
   </div>
   <div class="action">
@@ -55,4 +55,36 @@ export default {
 
 <style>
 
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.collectionForm {
+    background-color: blueviolet;
+    padding: 5em;
+    border-radius: ;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+input, label > #collection-name{
+    display: block;
+    
+}
+
+#is-public{
+    margin-top: 1.2em;
+    display: inline-block;
+    margin-bottom: 2em;
+}
 </style>

@@ -24,6 +24,13 @@ export default new Vuex.Store({
       name:'',
       isPublic:''
     },
+    myComic:{
+        marvel_id:'',
+        title:'',
+        cover:'',
+        issue_number: 0,
+        description:'',
+    },
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -44,6 +51,9 @@ export default new Vuex.Store({
     },
     SET_NEW_COLLECTION(state, data){
       state.newCollection=data;
+    },
+    SET_MY_COMIC(state, data){
+      state.myComic=data;
     },
   }
 })

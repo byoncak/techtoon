@@ -2,14 +2,16 @@
   <div class="home-hero">
     <div class="home-title">
         <img class="logo" :src="image"/>
-        <p>My Comics</p>
     </div>
     <div class="button-group">
     <div>
-        <router-link class="home-buttons" v-bind:to="{ name: 'comics-list' }">Browse Comics</router-link>    
+        <router-link class="home-buttons" v-bind:to="{ name: 'comics-list' }">Browse All Comics</router-link>    
     </div>
     <div>
-        <router-link class="home-buttons" v-bind:to="{ name: 'add-collection' }">Create Collection</router-link>
+        <router-link class="home-buttons" v-bind:to="{ name: 'add-collection' }">Create New Collection</router-link>
+    </div>
+    <div>
+        <router-link class="home-buttons" v-bind:to="{ name: 'my-collections' }">My Collections</router-link>
     </div>
     </div>
   </div>
@@ -74,7 +76,8 @@ export default {
 }
 
 .logo {
-    margin-bottom: -1.6em;
+    margin-bottom:4em;
+    margin-top: -1.2em;
     width: 32vw;
 }
 </style>

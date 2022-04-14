@@ -1,6 +1,8 @@
 <template>
 <div class="comic-list-page">
-    
+    <div class="home-title">
+        <h2>My Comics</h2>
+    </div>
   <div class="comic-list">
       <div v-on:mouseover="hoverIn" class="comic animate" v-for="comic in comics" v-bind:key="comic.id"> 
         <div class="add-comic-btn">
@@ -64,6 +66,22 @@ export default {
 
 
 <style>
+
+.home-title {
+    color:black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: 30vw;
+    margin-bottom: -4em;
+    margin-top: 5em;
+}
 
 .add-comic-btn{
     display: flex;

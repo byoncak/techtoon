@@ -1,16 +1,17 @@
 <template>
   <div class="home">
     <home-hero/>
-    <comic-list/>
+    <my-comics/>
   </div>
 </template>
 
 <script>
 import HomeHero from '../components/HomeHero.vue';
-import ComicList from '../components/ComicList.vue';
+// import ComicList from '../components/ComicList.vue';
+import MyComics from '../components/MyComics.vue';
 
 export default {
-  components: { HomeHero, ComicList },
+  components: { HomeHero, MyComics },
   name: "home"
 };
 </script>
