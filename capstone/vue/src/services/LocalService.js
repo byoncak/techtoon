@@ -17,6 +17,10 @@ newCollection(collection){
 
 updateComics(comic){
   return axios.put('/comic', comic);
-}
+},
+
+getComicsList(){
+  return axios.get('/comics');
+},
 
 }

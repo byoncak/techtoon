@@ -1,7 +1,8 @@
 <template>
   <div class="collection-list">
     <div v-for="collection in collections" v-bind:key="collection.id"> 
-            <p>{{collection.collectionId}} {{collection.collectionName}} {{collection.isPublic ? 'Private':'Public'}}</p>
+            <!-- <p>{{collection.collectionId}} {{collection.collectionName}} {{collection.isPublic ? 'Private':'Public'}}</p> -->
+            <p>{{collection}}</p>
     </div>
     </div>
 </template>
@@ -16,11 +17,17 @@ export default {
             collections: [],
         }
     },
+    // created(){
+    //     localService.getCollection().then(response => {
+    //             this.collections=response.data
+    //             });
+    // },
     created(){
-        localService.getCollection().then(response => {
+        localService.getComicsList().then(response => {
                 this.collections=response.data
                 });
-    },
+    }
+
 }
 </script>
 
