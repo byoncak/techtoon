@@ -44,8 +44,7 @@ namespace Capstone.DAO
         public Collection GetCollection(int collectionId)
         {
             Collection collection = null;
-            
-            Comic comic = null;
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -57,18 +56,29 @@ namespace Capstone.DAO
                     collection = GetCollectionFromReader(reader);
 
                 }
-                SqlCommand cmdTwo = new SqlCommand ("SELECT * FROM comics JOIN comics_collections cc ON comics.comic_id = cc.comic_id" +
+
+                return collection;
+            }
+        }
+        public List<Comic> GetComicsInCollection(int collectionId) 
+        {
+            List<Comic> comicList = new List<Comic>();
+            Comic comic = null;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand ("SELECT * FROM comics JOIN comics_collections cc ON comics.comic_id = cc.comic_id" +
                     " Join collections c ON c.collection_id = cc.collection_id WHERE c.collection_id = @collection_id", conn);
-                cmdTwo.Parameters.AddWithValue("@collection_id", collectionId);
-                SqlDataReader readerTwo = cmdTwo.ExecuteReader();
-                while (readerTwo.Read())
+                cmd.Parameters.AddWithValue("@collection_id", collectionId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
                     comic = GetComicFromReader(reader);
-                    collection.ComicList.Add(comic);
+                    comicList.Add(comic);
                 }
 
             }
-            return collection;
+            return comicList;  
         }
         public void AddComicToCollection(int comicId, int collectionId)
         {

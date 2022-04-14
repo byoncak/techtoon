@@ -12,7 +12,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
+    
     public class CollectionsController : ControllerBase
     {
         private readonly ICollectionDAO collectionDao;

@@ -14,5 +14,16 @@ namespace Capstone.Models
         public string CoverImage { get; set; }
         public int MarvelId { get; set; }
 
+        public Comic()
+        {
+
+        }
+        public Comic(int marvelId, string title, string coverImage)
+        {
+            MarvelId = marvelId;
+            Title = title;
+            CoverImage = coverImage;
+        }
+
     }
 }
