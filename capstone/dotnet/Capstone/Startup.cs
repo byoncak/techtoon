@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Capstone.DAO;
 using Capstone.Security;
+using Capstone.Services;
 
 namespace Capstone
 {
@@ -65,6 +66,7 @@ namespace Capstone
             services.AddTransient<IUserDao>(m => new UserSqlDao(connectionString));
             services.AddTransient<ICollectionDAO>(m => new CollectionSqlDao(connectionString));
             services.AddTransient<IComicDAO>(m => new ComicSqlDao(connectionString));
+            //services.AddTransient<IComicDAO>(m => new ApiService());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

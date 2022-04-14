@@ -20,7 +20,10 @@ namespace Capstone.DAO
 
         public List<Collection> GetCollectionByUserId(int userid);
 
+        public List<Collection> GetAllCollections();
+
+        public List<Comic> GetComicsInCollection(int collectionId);
         //
-        
+
     }
 }

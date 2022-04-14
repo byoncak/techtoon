@@ -21,6 +21,11 @@ namespace Capstone.Controllers
         {
             collectionDao = _collectionDao;
         }
+        [HttpGet()]
+        public List<Collection> GetAllCollections()
+        {
+            return collectionDao.GetAllCollections();
+        }
 
         [HttpGet("my-collections")]
         public List<Collection> GetMyCollections()
@@ -36,7 +41,7 @@ namespace Capstone.Controllers
             return collectionDao.GetCollection(id);
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("users/{userId}/collections/")]
         public List<Collection> GetCollectionsByUserID(int userId)
         {
             return collectionDao.GetCollectionByUserId(userId);
@@ -57,7 +62,14 @@ namespace Capstone.Controllers
             Collection added = collectionDao.CreateCollection(collection);
             return Created($"/collection/{added.CollectionId}", added); 
         }
-        //[HttpPost()] //endpoint TBD
+
+        [HttpGet("{id}/comics")]
+        public List<Comic> GetComicsInCollection(int id)
+        {
+            return collectionDao.GetComicsInCollection(id);
+        }
+
+        //[HttpPost("add-comic")] //endpoint TBD
         //public void AddComicToCollection(Comic comic, Collection collection) //return type ok?
         //{
 

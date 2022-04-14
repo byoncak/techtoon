@@ -40,6 +40,25 @@ namespace Capstone.DAO
             return GetCollection(newCollectionId);
         }
 
+        public List<Collection> GetAllCollections()
+        {
+            List<Collection> collections = new List<Collection>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM collections c;", conn);
+                
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Collection collection = GetCollectionFromReader(reader);
+                    collections.Add(collection);
+
+                }
+
+            }
+            return collections;
+        }
 
         public Collection GetCollection(int collectionId)
         {
