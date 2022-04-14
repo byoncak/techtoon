@@ -22,21 +22,39 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO comics (title, marvel_id, issue_number, description) " +
+                SqlCommand cmd = new SqlCommand("INSERT INTO comics (title, marvel_id, issue_number, description, cover_img) " +
                     "OUTPUT INSERTED.comic_id " +
-                    "VALUES (@title, @marvel_id, @issue_number, @description);", conn);
+                    "VALUES (@title, @marvel_id, @issue_number, @description, @cover_img);", conn);
 
                 cmd.Parameters.AddWithValue("@title", comic.Title);
                 cmd.Parameters.AddWithValue("@marvel_id", comic.MarvelId);
                 cmd.Parameters.AddWithValue("@issue_number", comic.IssueNumber);
                 cmd.Parameters.AddWithValue("@description", comic.Description);
+                cmd.Parameters.AddWithValue("@cover_img", comic.CoverImage);
 
                 newComicId = Convert.ToInt32(cmd.ExecuteScalar());
-
 
             }
             return GetComic(newComicId);
         }
+        public Comic GetComicByMarvelId(int marvelId)
+        {
+            Comic comic = null;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM comics WHERE marvel_id = @marvel_id", conn);
+                cmd.Parameters.AddWithValue("@marvel_id", marvelId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    comic = GetComicFromReader(reader);
+                }
+            }
+            return comic;
+        }
+
+
         public Comic GetComic(int comicId)
         {
             Comic comic = null;
