@@ -12,12 +12,12 @@ namespace Capstone.Controllers
     public class ComicsController: ControllerBase
     {
         private readonly IComicDAO comicDao;
-        //private ApiService apiService = new ApiService();
+        private readonly IApiService apiService;
 
-        public ComicsController(IComicDAO _comicDao)
+        public ComicsController(IComicDAO _comicDao, IApiService _apiService)
         {
             comicDao = _comicDao;
-            //apiService = _apiservice;
+            apiService = _apiService;
 
         }
 
@@ -29,20 +29,21 @@ namespace Capstone.Controllers
         [HttpGet()]
         public List<Comic> GetListOfComics()
         {
-            List<Comic> testList = new List<Comic>();
-            Comic a = new Comic(111, "spider-test", "https://cdn.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.webp");
-            testList.Add(a);
-            Comic b = new Comic(222, "Hulk test", "https://cdn.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.webp");
-            testList.Add(b);
-            return testList;
+            return apiService.GetComicsFromMarvel();
+            //List<Comic> testList = new List<Comic>();
+            //Comic a = new Comic(111, "spider-test", "https://cdn.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.webp");
+            //testList.Add(a);
+            //Comic b = new Comic(222, "Hulk test", "https://cdn.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.webp");
+            //testList.Add(b);
+            //return testList;
 
         }
         [HttpGet("{id}")]
         public Comic GetComicDetails(int id)
         {
-            //return apiService.GetComicDetailsfromMarvel(id);
-            Comic c = new Comic(id, "Iron test", "https://cdn.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.webp");
-            return c;
+            return apiService.GetComicDetailsfromMarvel(id);
+            //Comic c = new Comic(id, "Iron test", "https://cdn.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.webp");
+            //return c;
         }
     }
 }

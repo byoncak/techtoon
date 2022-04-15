@@ -103,8 +103,10 @@ namespace Capstone.DAO
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                //Error handle for duplicate add
                 conn.Open();
 
+                
                 SqlCommand cmd = new SqlCommand("INSERT INTO comics_collections (comic_id, collection_id) " +
                                                 "VALUES (@comic_id, @collection_id); ", conn);
                 cmd.Parameters.AddWithValue("@comic_id", comicId);

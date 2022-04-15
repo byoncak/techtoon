@@ -146,7 +146,7 @@ namespace Capstone.Services
     }
     public class ApiService: IApiService
     {
-        const string apiKey = "3b5244b04ff4bb9b3c1a218108163c4a";
+        const string apiKey = "ts=1&apikey=01a8382b3a6d62f64d7c8295260acc34&hash=57004eae8bee7e2612f4425de28963a7";
         private readonly IComicDAO comicDao;
         public static IRestClient client = new RestClient("https://gateway.marvel.com:443");
 
@@ -156,26 +156,28 @@ namespace Capstone.Services
             comicDao = _comicDao;
             
         }
-     
 
-        //public List<Comic> GetComicsFromMarvel(string queryString)
-        //{
-        //    RestRequest request = new RestRequest("v1/public/comics?+ queryString + "apikey="+ apiKey );
-        //    IRestResponse<Root> response = client.Get<Root>(request);
-        //    //idertate over response and map each results to techtoon comic
-        //}
+
+        public List<Comic> GetComicsFromMarvel()
+        {
+            RestRequest request = new RestRequest("v1/public/comics" + "?" + apiKey);
+            IRestResponse<Root> response = client.Get<Root>(request);
+            List<Comic> comics = new List<Comic>();
+            for (int i = 0; i < response.Data.data.results.Count; i++)
+            {
+                Result result = response.Data.data.results[i];
+                comics.Add(MapRootToComic(result));
+            }
+            return comics;
+        }
 
         public Comic GetComicDetailsfromMarvel(int marvelId)
         {
-            Comic comic = new Comic();
-            RestRequest request = new RestRequest("v1/public/comics/" + marvelId + "?apikey=" + apiKey);
+           
+            RestRequest request = new RestRequest("v1/public/comics/" + marvelId + "?" + apiKey);
             IRestResponse<Root> response = client.Get<Root>(request);
-            comic.MarvelId = response.Data.data.results[0].id;
-            comic.Title = response.Data.data.results[0].title;
-            comic.IssueNumber = response.Data.data.results[0].issueNumber;
-            comic.Description = (string)response.Data.data.results[0].description;
-            comic.CoverImage = response.Data.data.results[0].thumbnail.path + "." + response.Data.data.results[0].thumbnail;
-            return comic;
+            Result result = response.Data.data.results[0];
+            return MapRootToComic(result);
 
 
         }
@@ -189,12 +191,25 @@ namespace Capstone.Services
             }
             else
             {
-                comicDao.CreateComic(comic);
-                return comic;
+                return comicDao.CreateComic(comic);
+               
             }
 
         }
+        public Comic MapRootToComic(Result result)
+        {
+            Comic comic = new Comic();
+            comic.MarvelId = result.id;
+            comic.Title = result.title;
+            comic.IssueNumber = result.issueNumber;
+            comic.Description = (string)result.description;
+            if (result.images.Count > 0)
+            {
+                comic.CoverImage = result.images[0].path + "." + result.images[0].extension;
+            }
 
+            return comic;
+        }
         //When adding comic if record already exitsts in db, only add line to join table to place in collection
         //Else if it doesn't exist, create it and then add to join table
         //

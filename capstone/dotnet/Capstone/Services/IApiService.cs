@@ -8,7 +8,7 @@ namespace Capstone.Services
 {
     public interface IApiService
     {
-        public List<Comic> GetComicsFromMarvel(string queryString);
+        public List<Comic> GetComicsFromMarvel();
         public Comic GetComicDetailsfromMarvel(int marvelId);
         public Comic AddOrCreateComic(Comic comic);
 

@@ -73,12 +73,12 @@ namespace Capstone.Controllers
         }
 
         [HttpPost("add-comic")] //endpoint TBD
-        public void AddComicToCollection(Comic comic, Collection collection) //return type ok?
+        public void AddComicToCollection(Comic comic, int collectionId) //return type ok?
         {
+                        
+            Comic comicToAdd = apiService.AddOrCreateComic(comic);
 
-            Comic comicToAdd = new Comic();
-            comicToAdd = apiService.AddOrCreateComic(comic);
-            collectionDao.AddComicToCollection(comicToAdd.ComicId, collection.CollectionId);
+            collectionDao.AddComicToCollection(comicToAdd.ComicId, collectionId);
 
 
             //if comic doesn't exist in database
