@@ -160,7 +160,7 @@ namespace Capstone.Services
 
         //public List<Comic> GetComicsFromMarvel(string queryString)
         //{
-        //    RestRequest request = new RestRequest("v1/public/comics?apikey="+ apiKey + queryString);
+        //    RestRequest request = new RestRequest("v1/public/comics?+ queryString + "apikey="+ apiKey );
         //    IRestResponse<Root> response = client.Get<Root>(request);
         //    //idertate over response and map each results to techtoon comic
         //}
@@ -180,18 +180,28 @@ namespace Capstone.Services
 
         }
 
-        //public Comic AddOrCreateComic(Comic comic)
-        //{
-            
-        //}
-        
+        public Comic AddOrCreateComic(Comic comic)
+        {
+            Comic comicToAdd = comicDao.GetComicByMarvelId(comic.MarvelId);
+            if (comicToAdd != null)
+            {
+                return comicToAdd;
+            }
+            else
+            {
+                comicDao.CreateComic(comic);
+                return comic;
+            }
+
+        }
+
         //When adding comic if record already exitsts in db, only add line to join table to place in collection
         //Else if it doesn't exist, create it and then add to join table
         //
 
         //GetDetailsforFrontEndDisplay()
         //Goes gets relevenat details, put them somewhere through a controller to get at the front end
-        
+
         //REST requests to marvel?
 
 

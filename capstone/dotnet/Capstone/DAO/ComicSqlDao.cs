@@ -104,12 +104,7 @@ namespace Capstone.DAO
             return comic;
 
         }
-        //public Comic FindComicByMarvelId(int marvelId)
-        //{
-        //    using (SqlC)
-        //}
-
-
+        
         private Comic GetComicFromReader(SqlDataReader reader)
         {
             Comic comic = new Comic()

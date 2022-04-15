@@ -12,6 +12,6 @@ namespace Capstone.DAO
         public Comic GetComicByTitle(string title);
         public Comic GetComicByIssueNumber(int issueNumber);
         public Comic CreateComic(Comic comic);
-
+        public Comic GetComicByMarvelId(int marvelId);
     }
 }

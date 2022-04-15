@@ -12,12 +12,12 @@ namespace Capstone.Controllers
     public class ComicsController: ControllerBase
     {
         private readonly IComicDAO comicDao;
-        private ApiService apiService = new ApiService();
+        //private ApiService apiService = new ApiService();
 
-        public ComicsController(IComicDAO _comicDao, ApiService _apiservice)
+        public ComicsController(IComicDAO _comicDao)
         {
             comicDao = _comicDao;
-            apiService = _apiservice;
+            //apiService = _apiservice;
 
         }
 
