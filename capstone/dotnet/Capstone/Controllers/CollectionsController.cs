@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Capstone.DAO;
 using Capstone.Models;
 using Capstone.Security;
+using Capstone.Services;
 
 namespace Capstone.Controllers
 {
@@ -16,10 +17,12 @@ namespace Capstone.Controllers
     public class CollectionsController : ControllerBase
     {
         private readonly ICollectionDAO collectionDao;
+        private readonly IApiService apiService;
 
-        public CollectionsController(ICollectionDAO _collectionDao)
+        public CollectionsController(ICollectionDAO _collectionDao, IApiService _apiService)
         {
             collectionDao = _collectionDao;
+            apiService = _apiService;
         }
         [HttpGet()]
         public List<Collection> GetAllCollections()
@@ -69,32 +72,34 @@ namespace Capstone.Controllers
             return collectionDao.GetComicsInCollection(id);
         }
 
-        //[HttpPost("add-comic")] //endpoint TBD
-        //public void AddComicToCollection(Comic comic, Collection collection) //return type ok?
-        //{
+        [HttpPost("add-comic")] //endpoint TBD
+        public void AddComicToCollection(Comic comic, Collection collection) //return type ok?
+        {
 
-        //    collectionDao.AddComicToCollection(comic.ComicId, collection.CollectionId);
-
-
-        //    //if comic doesn't exist in database
-        //    //comicdao.CreateComic THEN
-        //    //collectiondao.AddComicToCollection
-
-        //    //    //if comic does exist in database
-        //    //    //ONLY DO collectiondao.AddComicToCollection
-
-        //    //    //STILL TO CONFIRM: proper method for acquiring marvel_ID at this stage from Marvel API
-
-        //    //}
-
-        //    //public ActionResult<>
+            Comic comicToAdd = new Comic();
+            comicToAdd = apiService.AddOrCreateComic(comic);
+            collectionDao.AddComicToCollection(comicToAdd.ComicId, collection.CollectionId);
 
 
+            //if comic doesn't exist in database
+            //comicdao.CreateComic THEN
+            //collectiondao.AddComicToCollection
+
+            //    //if comic does exist in database
+            //    //ONLY DO collectiondao.AddComicToCollection
+
+            //    //STILL TO CONFIRM: proper method for acquiring marvel_ID at this stage from Marvel API
+
+            //}
+
+            //public ActionResult<>
 
 
 
 
-        //}
+
+
+        }
 
 
     }

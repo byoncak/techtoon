@@ -144,13 +144,13 @@ namespace Capstone.Services
         public string etag { get; set; }
         public Data data { get; set; }
     }
-    public class ApiService
+    public class ApiService: IApiService
     {
         const string apiKey = "3b5244b04ff4bb9b3c1a218108163c4a";
         private readonly IComicDAO comicDao;
         public static IRestClient client = new RestClient("https://gateway.marvel.com:443");
-                                                        
 
+        public ApiService() { }
         public ApiService (IComicDAO _comicDao)
         {
             comicDao = _comicDao;
