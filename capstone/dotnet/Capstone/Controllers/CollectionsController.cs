@@ -50,11 +50,11 @@ namespace Capstone.Controllers
             return collectionDao.GetCollectionByUserId(userId);
         }
 
-        [HttpGet("{userName}")]
-        public List<Collection> GetCollectionsByName(string userName)
-        {
-            return collectionDao.GetCollectionByUserName(userName);
-        }
+        //[HttpGet("users/{userName}/collections")]
+        //public List<Collection> GetCollectionsByName(string userName)
+        //{
+        //    return collectionDao.GetCollectionByUserName(userName);
+        //}
 
         [HttpPost()]
         public ActionResult<Collection> CreateCollection(Collection collection)

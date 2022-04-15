@@ -158,6 +158,7 @@ namespace Capstone.Services
         }
 
 
+
         public List<Comic> GetComicsFromMarvel()
         {
             RestRequest request = new RestRequest("v1/public/comics" + "?" + apiKey);
@@ -170,6 +171,7 @@ namespace Capstone.Services
             }
             return comics;
         }
+
 
         public Comic GetComicDetailsfromMarvel(int marvelId)
         {
