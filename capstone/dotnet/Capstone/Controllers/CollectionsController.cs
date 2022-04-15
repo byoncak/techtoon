@@ -13,7 +13,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    
+
     public class CollectionsController : ControllerBase
     {
         private readonly ICollectionDAO collectionDao;
@@ -63,7 +63,7 @@ namespace Capstone.Controllers
             int userNumber = Convert.ToInt32(userId);
             collection.UserId = userNumber;
             Collection added = collectionDao.CreateCollection(collection);
-            return Created($"/collection/{added.CollectionId}", added); 
+            return Created($"/collection/{added.CollectionId}", added);
         }
 
         [HttpGet("{id}/comics")]
@@ -76,9 +76,9 @@ namespace Capstone.Controllers
         public void AddComicToCollection(Comic comic, int collectionId) //return type ok?
         {
                         
-            Comic comicToAdd = apiService.AddOrCreateComic(comic);
+           Comic comicToAdd = apiService.AddOrCreateComic(comic);
 
-            collectionDao.AddComicToCollection(comicToAdd.ComicId, collectionId);
+           collectionDao.AddComicToCollection(comicToAdd.ComicId, collectionId);
 
 
             //if comic doesn't exist in database
