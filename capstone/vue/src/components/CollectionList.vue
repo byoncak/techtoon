@@ -1,8 +1,16 @@
 <template>
   <div class="collection-list">
+      <h1>MY Collection</h1>
     <div v-for="collection in collections" v-bind:key="collection.id"> 
-            <!-- <p>{{collection.collectionId}} {{collection.collectionName}} {{collection.isPublic ? 'Private':'Public'}}</p> -->
-            <p>{{collection}}</p>
+        <router-link :to="{ name:'book-in-collection', params:{collectionId: collection.collectionId} }">
+            <p>{{collection.collectionId}} {{collection.collectionName}} {{collection.isPublic ? 'Private':'Public'}}</p>
+        </router-link>
+    </div>
+    <h1>Other Public Collection</h1>
+    <div v-for="otherCollection in otherCollections" v-bind:key="otherCollection.id"> 
+    <router-link :to="{ name:'book-in-collection', params:{collectionId: otherCollection.collectionId} }">
+            <p>{{otherCollection.collectionId}} {{otherCollection.collectionName}} {{otherCollection.isPublic ? 'Private':'Public'}}</p>
+    </router-link>
     </div>
     </div>
 </template>
@@ -15,18 +23,19 @@ export default {
     data(){
         return{
             collections: [],
+            otherCollections:[]
         }
     },
-    // created(){
-    //     localService.getCollection().then(response => {
-    //             this.collections=response.data
-    //             });
-    // },
     created(){
-        localService.getComicsList().then(response => {
+        localService.getCollection().then(response => {
                 this.collections=response.data
                 });
-    }
+        localService.getPublicCollection().then(response => {
+                this.otherCollections=response.data
+                });
+    },
+        
+
 
 }
 </script>

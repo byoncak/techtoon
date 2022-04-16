@@ -25,5 +25,7 @@ namespace Capstone.DAO
         public List<Comic> GetComicsInCollection(int collectionId);
         //
 
+        public List<Collection> GetOtherPublicCollection(int userId);
+
     }
 }

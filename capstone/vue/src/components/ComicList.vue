@@ -9,7 +9,8 @@
         </button>
         </div>
           <div class="cover">
-          <img class="cover-img" :src="comic.thumbnail.path + '.' + comic.thumbnail.extension">
+          <!-- <img class="cover-img" :src="comic.thumbnail.path + '.' + comic.thumbnail.extension"> -->
+          <img class="cover-img" :src="comic.coverImage">
           </div>
           <div>
           <p class="comic-title">{{comic.title}}</p>
@@ -20,8 +21,8 @@
 </template>
 
 <script>
-import marvelService from '@/services/MarvelService';
-// import localService from '@/services/LocalService';
+//import marvelService from '@/services/MarvelService';
+import localService from '@/services/LocalService';
 
 export default {
     name:"comic-list",
@@ -31,11 +32,12 @@ export default {
         }
     },
     created(){
-        marvelService.getComics().then(response => {
-            response.data.data.results.forEach(item=>{
-                this.comics.push(item);
-                console.log(item)
-                });
+        localService.getComicsList().then(response => {
+            this.comics=response.data;
+            // response.data.data.results.forEach(item=>{
+            //     this.comics.push(item);
+            //     console.log(item)
+            //     });
             });
     },
     // methods:{

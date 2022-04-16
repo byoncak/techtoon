@@ -7,7 +7,8 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import ComicList from '../components/ComicList.vue'
 import AddCollection from '../views/AddCollection.vue'
-import MyCollection from '../views/MyCollection.vue'
+import BooksInCollection from '../views/BooksInCollection.vue'
+import Collections from '../views/Collections.vue'
 
 Vue.use(Router)
 
@@ -67,9 +68,14 @@ const router = new Router({
       component: AddCollection
     },
     {
-      path: "/my-collections",
-      name: "my-collections",
-      component: MyCollection
+      path: "/collections",
+      name: "collections",
+      component: Collections
+    },
+    {
+      path: "/book-in-collection",
+      name: "book-in-collection",
+      component: BooksInCollection
     },
     
   ]

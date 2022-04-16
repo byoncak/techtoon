@@ -72,6 +72,14 @@ namespace Capstone.Controllers
             return collectionDao.GetComicsInCollection(id);
         }
 
+        [HttpGet("public-collection")]
+        public List<Collection> GetOtherPublicCollection()
+        {
+            string id = User.FindFirst("sub").Value;
+            int userNumber = Convert.ToInt32(id);
+            return collectionDao.GetOtherPublicCollection(userNumber);
+        }
+
         [HttpPost("add-comic")] //endpoint TBD
         public void AddComicToCollection(Comic comic, int collectionId) //return type ok?
         {
