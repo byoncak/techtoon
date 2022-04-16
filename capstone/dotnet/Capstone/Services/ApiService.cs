@@ -210,6 +210,10 @@ namespace Capstone.Services
             {
                 comic.CoverImage = result.images[0].path + "." + result.images[0].extension;
             }
+            else
+            {
+                comic.CoverImage = @"src\assets\marvelPlaceholder.png";
+            }
 
             return comic;
         }
