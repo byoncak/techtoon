@@ -117,6 +117,7 @@ justify-content: space-evenly;}
     margin-top:0em;
     height: 320px;
     margin-bottom: -3em;
+    justify-content: space-evenly;
 }
 
 .cover-img {
