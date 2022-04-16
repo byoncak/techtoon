@@ -20,7 +20,7 @@ newCollection(collection){
   },  
 
 updateComics(comic){
-  return axios.put('/comic', comic);
+  return axios.post('/comics', comic);
 },
 
 getComicsList(){
