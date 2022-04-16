@@ -74,7 +74,7 @@ const router = new Router({
     },
     {
       path: "/book-in-collection",
-      name: "book-in-collection",
+      name: "books-in-collection",
       component: BooksInCollection
     },
     

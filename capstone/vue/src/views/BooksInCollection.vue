@@ -11,7 +11,7 @@
 import BookInCollection from '../components/BookInCollection.vue'
 export default {
   components: { BookInCollection },
-    name:'book-in-collection',
+    name:'books-in-collection',
 
 
 }

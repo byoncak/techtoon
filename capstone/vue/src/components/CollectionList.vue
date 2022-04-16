@@ -2,13 +2,13 @@
   <div class="collection-list">
       <h1>MY Collection</h1>
     <div v-for="collection in collections" v-bind:key="collection.id"> 
-        <router-link :to="{ name:'book-in-collection', params:{collectionId: collection.collectionId} }">
+        <router-link :to="{ name:'books-in-collection', params:{collectionId: collection.collectionId} }">
             <p>{{collection.collectionId}} {{collection.collectionName}} {{collection.isPublic ? 'Private':'Public'}}</p>
         </router-link>
     </div>
     <h1>Other Public Collection</h1>
     <div v-for="otherCollection in otherCollections" v-bind:key="otherCollection.id"> 
-    <router-link :to="{ name:'book-in-collection', params:{collectionId: otherCollection.collectionId} }">
+    <router-link :to="{ name:'books-in-collection', params:{collectionId: otherCollection.collectionId} }">
             <p>{{otherCollection.collectionId}} {{otherCollection.collectionName}} {{otherCollection.isPublic ? 'Private':'Public'}}</p>
     </router-link>
     </div>
