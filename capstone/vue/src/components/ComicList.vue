@@ -8,7 +8,7 @@
           <!-- <img class="cover-img" :src="comic.thumbnail.path + '.' + comic.thumbnail.extension"> -->
         </div>
         <div class="circle-btn-container">
-        <button v-on:click="addComic" class="circle-btn" style="border-radius:100%;">
+        <button v-on:click="addComic(comic)" class="circle-btn" style="border-radius:100%;">
         <span class="circle-btn-content">+</span>
         </button>
         </div>
@@ -46,9 +46,9 @@ export default {
             });
     },
     methods:{
-        addComic() {
+        addComic(comic) {
             localService
-            .updateComics(this.comic).then(response => {
+            .addComicToCollection(comic, 4).then(response => {
                 if(response.status ==201){
                     this.$router.push('/comic');
                 }

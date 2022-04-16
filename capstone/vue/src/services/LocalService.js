@@ -23,6 +23,10 @@ updateComics(comic){
   return axios.post('/comics', comic);
 },
 
+addComicToCollection(comic, collectionId){
+  return axios.post(`/collections/${collectionId}/comics`, comic);
+},
+
 getComicsList(){
   return axios.get('/comics');
 },
