@@ -72,13 +72,21 @@ namespace Capstone.Controllers
             return collectionDao.GetComicsInCollection(id);
         }
 
-        [HttpPost("add-comic")] //endpoint TBD
-        public void AddComicToCollection(Comic comic, int collectionId) //return type ok?
+        [HttpGet("public-collection")]
+        public List<Collection> GetOtherPublicCollection()
+        {
+            string id = User.FindFirst("sub").Value;
+            int userNumber = Convert.ToInt32(id);
+            return collectionDao.GetOtherPublicCollection(userNumber);
+        }
+
+        [HttpPost("{id}/comics")] //endpoint TBD
+        public void AddComicToCollection(Comic comic, int id) //return type ok?
         {
                         
            Comic comicToAdd = apiService.AddOrCreateComic(comic);
 
-           collectionDao.AddComicToCollection(comicToAdd.ComicId, collectionId);
+           collectionDao.AddComicToCollection(comicToAdd.ComicId, id);
 
 
             //if comic doesn't exist in database

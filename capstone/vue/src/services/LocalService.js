@@ -7,16 +7,24 @@ getCollection() {
     return axios.get('/collections/my-collections');
   },
 
-// getCollectionById(id) {
-//     return axios.get(`/collections/${id}`);
-//   },
+getCollectionById(id) {
+    return axios.get(`/collections/${id}/comics`);
+  },
+
+  getPublicCollection(){
+    return axios.get('/collections/public-collection');
+  },
 
 newCollection(collection){
     return axios.post('/collections',collection);
   },  
 
 updateComics(comic){
-  return axios.put('/comic', comic);
+  return axios.post('/comics', comic);
+},
+
+addComicToCollection(comic, collectionId){
+  return axios.post(`/collections/${collectionId}/comics`, comic);
 },
 
 getComicsList(){

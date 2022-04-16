@@ -18,10 +18,11 @@
         </div>
     </div>
 </div>
+
 </template>
 
 <script>
-import marvelService from '@/services/MarvelService';
+//import marvelService from '@/services/MarvelService';
 import localService from '@/services/LocalService';
 
 export default {
@@ -32,23 +33,24 @@ export default {
         }
     },
     created(){
-        marvelService.getComics().then(response => {
-            response.data.data.results.forEach(item=>{
-                this.comics.push(item);
-                console.log(item)
-                });
+        localService.getComicsList().then(response => {
+            this.comics=response.data;
+            // response.data.data.results.forEach(item=>{
+            //     this.comics.push(item);
+            //     console.log(item)
+            //     });
             });
     },
     methods:{
-        addComic() {
+        addComic(comic) {
             localService
-            .updateComics(this.comic).then(response => {
+            .addComicToCollection(comic, 4).then(response => {
                 if(response.status ==201){
                     this.$router.push('/comic');
                 }
             })
             .catch(error => {
-        if(error.response){
+            if(error.response){
               this.errorMsg = "Error submitting. Response received was '" + error.response.statusText + "'.";
             }
             else if(error.request) {

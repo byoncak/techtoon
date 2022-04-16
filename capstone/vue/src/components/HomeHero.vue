@@ -11,7 +11,7 @@
         <router-link class="home-buttons" v-bind:to="{ name: 'add-collection' }">Create New Collection</router-link>
     </div>
     <div>
-        <router-link class="home-buttons" v-bind:to="{ name: 'my-collections' }">My Collections</router-link>
+        <router-link class="home-buttons" v-bind:to="{ name: 'collections' }">My Collections</router-link>
     </div>
     </div>
   </div>

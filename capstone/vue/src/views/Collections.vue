@@ -6,7 +6,7 @@
 import CollectionList from '../components/CollectionList.vue'
 export default {
   components: { CollectionList },
-    name:'my-collections',
+    name:'collections',
 
 
 }

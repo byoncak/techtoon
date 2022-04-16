@@ -150,7 +150,7 @@ namespace Capstone.Services
         private readonly IComicDAO comicDao;
         public static IRestClient client = new RestClient("https://gateway.marvel.com:443");
 
-        public ApiService() { }
+        //public ApiService() { }
         public ApiService (IComicDAO _comicDao)
         {
             comicDao = _comicDao;

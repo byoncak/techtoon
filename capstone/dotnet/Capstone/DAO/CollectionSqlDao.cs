@@ -79,6 +79,25 @@ namespace Capstone.DAO
                 return collection;
             }
         }
+        public List<Collection> GetOtherPublicCollection(int userId)
+        {
+            List<Collection> collections = new List<Collection>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM collections WHERE user_id !=@user_Id AND is_public= 0", conn);
+                cmd.Parameters.AddWithValue("@user_Id ", userId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Collection collection = GetCollectionFromReader(reader);
+                    collections.Add(collection);
+                }
+
+            }
+            return collections;
+        }
+
         public List<Comic> GetComicsInCollection(int collectionId) 
         {
             List<Comic> comicList = new List<Comic>();
