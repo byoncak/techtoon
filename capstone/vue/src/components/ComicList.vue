@@ -4,10 +4,10 @@
       <div class="comic-list" v-for="comic in comics" v-bind:key="comic.id"> 
         <div class="comic-card">
             <div class="cover-img-container">
-                <img class="cover-img" :src="comic.thumbnail.path + '.' + comic.thumbnail.extension">
+                <img class="cover-img" :src="comic.coverImage">
             </div>
             <div class="circle-btn-container">
-                <button v-on:click="addComic" class="circle-btn" style="border-radius:100%;">
+                <button v-on:click="addComic(comic)" class="circle-btn" style="border-radius:100%;">
                 <span class="circle-btn-content">+</span>
                 </button>
             </div>
@@ -18,11 +18,9 @@
         </div>
     </div>
 </div>
-
 </template>
 
 <script>
-//import marvelService from '@/services/MarvelService';
 import localService from '@/services/LocalService';
 
 export default {
@@ -34,23 +32,19 @@ export default {
     },
     created(){
         localService.getComicsList().then(response => {
-            this.comics=response.data;
-            // response.data.data.results.forEach(item=>{
-            //     this.comics.push(item);
-            //     console.log(item)
-            //     });
-            });
+                this.comics = response.data;
+                });
     },
     methods:{
         addComic(comic) {
             localService
-            .addComicToCollection(comic, 4).then(response => {
+            .addComicToCollection(comic, 2).then(response => {
                 if(response.status ==201){
                     this.$router.push('/comic');
                 }
             })
             .catch(error => {
-            if(error.response){
+        if(error.response){
               this.errorMsg = "Error submitting. Response received was '" + error.response.statusText + "'.";
             }
             else if(error.request) {
