@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <home-hero/>
+    <h2> New Releases </h2>
     <comic-list/>
   </div>
 </template>

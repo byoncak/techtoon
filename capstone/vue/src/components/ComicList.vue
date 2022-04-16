@@ -1,24 +1,23 @@
 <template>
 <div class="comic-list-page">
-    
   <div class="comic-list-container">
       <div class="comic-list" v-for="comic in comics" v-bind:key="comic.id"> 
         <div class="comic-card">
-        <div class="cover-img-container">
-          <img class="cover-img" :src="comic.thumbnail.path + '.' + comic.thumbnail.extension">
+            <div class="cover-img-container">
+                <img class="cover-img" :src="comic.thumbnail.path + '.' + comic.thumbnail.extension">
+            </div>
+            <div class="circle-btn-container">
+                <button v-on:click="addComic" class="circle-btn" style="border-radius:100%;">
+                <span class="circle-btn-content">+</span>
+                </button>
+            </div>
+            <div class="title-block">
+                <p class="comic-title">{{comic.title}}</p>
+            </div>
         </div>
-        <div class="circle-btn-container">
-        <button v-on:click="addComic" class="circle-btn" style="border-radius:100%;">
-        <span class="circle-btn-content">+</span>
-        </button>
         </div>
-        <div class="title-block">
-        <p class="comic-title">{{comic.title}}</p>
-        </div>
-        </div>
-        </div>
-        </div>
-  </div>
+    </div>
+</div>
 </template>
 
 <script>
