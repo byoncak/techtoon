@@ -21,6 +21,8 @@ namespace Capstone.DAO
             int newComicId;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                //error handle for values entered as 'null'
+                
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("INSERT INTO comics (title, marvel_id, issue_number, description, cover_img) " +
                     "OUTPUT INSERTED.comic_id " +

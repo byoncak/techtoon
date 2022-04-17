@@ -75,7 +75,7 @@ export default {
             }
       }); },
       searchByTitle(){
-          
+
       }
     }
 }
