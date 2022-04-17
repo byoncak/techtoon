@@ -31,7 +31,14 @@ namespace Capstone.DAO
                 cmd.Parameters.AddWithValue("@title", comic.Title);
                 cmd.Parameters.AddWithValue("@marvel_id", comic.MarvelId);
                 cmd.Parameters.AddWithValue("@issue_number", comic.IssueNumber);
-                cmd.Parameters.AddWithValue("@description", comic.Description);
+                if (String.IsNullOrEmpty(comic.Description))
+                {
+                    cmd.Parameters.AddWithValue("@description", "");
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@description", comic.Description);
+                }
                 cmd.Parameters.AddWithValue("@cover_img", comic.CoverImage);
 
                 newComicId = Convert.ToInt32(cmd.ExecuteScalar());
