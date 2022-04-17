@@ -11,7 +11,7 @@ getCollectionById(id) {
     return axios.get(`/collections/${id}/comics`);
   },
 
-  getPublicCollection(){
+getPublicCollection(){
     return axios.get('/collections/public-collection');
   },
 
@@ -29,6 +29,10 @@ addComicToCollection(comic, collectionId){
 
 getComicsList(){
   return axios.get('/comics');
+},
+
+searchComicByTitle(title,character){
+  return axios.get('/comics/searchTitle',title,character)
 },
 
 }

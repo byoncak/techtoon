@@ -1,10 +1,10 @@
 <template>
 <div class="comic-list-page">
     <div class="search-bar">
-        <form>
+        <form v-on:submit.prevent>
         <label for="searchTitle">Search By Title: </label>
-      <input name="searchTitle" type="text" v-model="searchTitle" />
-      <button type="submit" v-on:click="searchByTitle()">Search</button>
+        <input name="searchTitle" type="text" placeholder="title" v-model="searchTitle" />
+      <button type="submit" v-on:click="searchByTitle">Search</button>
       </form>
     </div>
     <div class="selected-collection">
@@ -56,7 +56,6 @@ export default {
     },
     methods:{
         addComic(comic) {
-            console.log(this.selectedCollection)
             localService
             .addComicToCollection(comic, this.selectedCollection).then(response => {
                 if(response.status ==201){
@@ -73,11 +72,14 @@ export default {
             else {
               this.errorMsg = "Error submitting. Request could not be created.";
             }
-      }); },
+            });
+             },
       searchByTitle(){
-
-      }
-    }
+          localService.searchComicByTitle({params:{titleSearch:this.searchTitle}}).then(response =>{
+             this.comics=response.data;
+      })
+    },
+}
 }
 </script>
 

@@ -11,6 +11,7 @@ namespace Capstone.Services
         public List<Comic> GetComicsFromMarvel();
         public Comic GetComicDetailsfromMarvel(int marvelId);
         public Comic AddOrCreateComic(Comic comic);
+        public List<Comic> GetComicsFromMarvelByTitle(string titleSearch);
 
     }
 }

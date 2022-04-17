@@ -8,8 +8,8 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    
-    public class ComicsController: ControllerBase
+
+    public class ComicsController : ControllerBase
     {
         private readonly IComicDAO comicDao;
         private readonly IApiService apiService;
@@ -44,6 +44,12 @@ namespace Capstone.Controllers
             return apiService.GetComicDetailsfromMarvel(id);
             //Comic c = new Comic(id, "Iron test", "https://cdn.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.webp");
             //return c;
+        }
+
+        [HttpGet("searchTitle")]
+        public List<Comic> GetComicsFromMarvelByTitle(string titleSearch)
+        {
+            return apiService.GetComicsFromMarvelByTitle(titleSearch);
         }
     }
 }
