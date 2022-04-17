@@ -1,5 +1,18 @@
 <template>
 <div class="comic-list-page">
+    <div class="search-bar">
+        <form>
+        <label for="searchTitle">Search By Title: </label>
+      <input name="searchTitle" type="text" v-model="searchTitle" />
+      <button type="submit" v-on:click="searchByTitle()">Search</button>
+      </form>
+    </div>
+    <div class="selected-collection">
+        <h4>Add to Collection:</h4>
+        <select v-model="selectedCollection">
+            <option v-for="collection in collections" v-bind:key="collection.id" :value="collection.collectionId">{{collection.collectionName}}</option>
+        </select>
+    </div>
   <div class="comic-list-container">
       <div class="comic-list" v-for="comic in comics" v-bind:key="comic.id"> 
         <div class="comic-card">
@@ -28,23 +41,30 @@ export default {
     data(){
         return{
             comics: [],
+            collections:[],
+            selectedCollection:'',
+            searchTitle:'',
         }
     },
     created(){
         localService.getComicsList().then(response => {
                 this.comics = response.data;
                 });
+        localService.getCollection().then(response => {
+                this.collections = response.data;
+                });
     },
     methods:{
         addComic(comic) {
+            console.log(this.selectedCollection)
             localService
-            .addComicToCollection(comic, 1).then(response => {
+            .addComicToCollection(comic, this.selectedCollection).then(response => {
                 if(response.status ==201){
                     this.$router.push('/comic');
                 }
             })
             .catch(error => {
-        if(error.response){
+            if(error.response){
               this.errorMsg = "Error submitting. Response received was '" + error.response.statusText + "'.";
             }
             else if(error.request) {
@@ -53,7 +73,10 @@ export default {
             else {
               this.errorMsg = "Error submitting. Request could not be created.";
             }
-      }); }
+      }); },
+      searchByTitle(){
+          
+      }
     }
 }
 </script>
