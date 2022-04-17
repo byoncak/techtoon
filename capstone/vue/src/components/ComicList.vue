@@ -3,7 +3,7 @@
     <div class="search-bar">
         <form v-on:submit.prevent>
         <label for="searchTitle">Search By Title: </label>
-        <input name="searchTitle" type="text" placeholder="title" v-model="searchTitle" />
+        <input name="searchTitle" type="text" v-model="searchTitle" />
       <button type="submit" v-on:click="searchByTitle">Search</button>
       </form>
     </div>
