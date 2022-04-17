@@ -179,6 +179,24 @@ namespace Capstone.DAO
             }
             return collections;
         }
+        
+        //THIS IS A BASIC STATS QUERY WE CAN TEST OUR FRONT END WITH
+        public int TotalComicsInCollection(int collectionId)
+        {
+            
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT COUNT (*) FROM comics_collections WHERE collection_id = @collection_id", conn);
+                cmd.Parameters.AddWithValue("@collection_id", collectionId);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+
+
+            }
+        }
+
+
+
 
         private Collection GetCollectionFromReader(SqlDataReader reader)
         {
