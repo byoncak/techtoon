@@ -38,7 +38,7 @@ export default {
     methods:{
         addComic(comic) {
             localService
-            .addComicToCollection(comic, 2).then(response => {
+            .addComicToCollection(comic, 1).then(response => {
                 if(response.status ==201){
                     this.$router.push('/comic');
                 }

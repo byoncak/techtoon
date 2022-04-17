@@ -157,7 +157,18 @@ namespace Capstone.Services
             
         }
 
-
+        public List<Comic> GetComicsFromMarvelByTitle(string titleSearch)
+        {
+            RestRequest request = new RestRequest("v1/public/comicstitleStartsWith=" + titleSearch + "?" + apiKey);
+            IRestResponse<Root> response = client.Get<Root>(request);
+            List<Comic> comics = new List<Comic>();
+            for (int i = 0; i < response.Data.data.results.Count; i++)
+            {
+                Result result = response.Data.data.results[i];
+                comics.Add(MapRootToComic(result));
+            }
+            return comics;
+        }
 
         public List<Comic> GetComicsFromMarvel()
         {
