@@ -219,7 +219,22 @@ namespace Capstone.DAO
             }
         }
 
+        public int TotalComicsInCollectionByCharacter(int collectionId)
+        {
 
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT co.main_character, COUNT (*) from comics_collections cc JOIN collections c on c.collection_id = cc.collection_id " +
+                                                "JOIN comics co on co.comic_id = cc.comic_id " +
+                                                "where c.collection_id = @collection_id;)", conn);
+                
+                cmd.Parameters.AddWithValue("@collection_id", collectionId);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+
+
+            }
+        }
 
 
         private Collection GetCollectionFromReader(SqlDataReader reader)
