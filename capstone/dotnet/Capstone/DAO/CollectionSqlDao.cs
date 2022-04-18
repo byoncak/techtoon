@@ -219,19 +219,25 @@ namespace Capstone.DAO
             }
         }
 
-        public int TotalComicsInCollectionByCharacter(int collectionId)
+        public List<Statistics.CharacterStats> TotalComicsInCollectionByCharacter(int collectionId)
         {
-
+            List<Statistics.CharacterStats> stats = new List<Statistics.CharacterStats>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT co.main_character, COUNT (*) from comics_collections cc JOIN collections c on c.collection_id = cc.collection_id " +
+                SqlCommand cmd = new SqlCommand("SELECT co.main_character, COUNT (*) as total from comics_collections cc JOIN collections c on c.collection_id = cc.collection_id " +
                                                 "JOIN comics co on co.comic_id = cc.comic_id " +
-                                                "where c.collection_id = @collection_id;)", conn);
+                                                "where c.collection_id = @collection_id GROUP BY main_character", conn);
                 
                 cmd.Parameters.AddWithValue("@collection_id", collectionId);
-                return Convert.ToInt32(cmd.ExecuteScalar());
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
 
+                    stats.Add(GetCharStatsFromReader(reader));
+
+                }
+                return stats;
 
             }
         }
@@ -265,6 +271,18 @@ namespace Capstone.DAO
             };
 
             return comic;
+        }
+
+        private Statistics.CharacterStats GetCharStatsFromReader(SqlDataReader reader)
+        {
+            Statistics.CharacterStats stats = new Statistics.CharacterStats()
+            {
+                Name = Convert.ToString(reader["main_character"]),
+                IssueCount = Convert.ToInt32(reader["total"])
+            };
+
+            return stats;
+        
         }
 
 

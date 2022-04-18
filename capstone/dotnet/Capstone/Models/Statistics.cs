@@ -7,12 +7,11 @@ namespace Capstone.Models
 {
     public class Statistics
     {
-        //RelevantSortStat1 get set
-        //RelevantSortStat2 get set
-
-        //MethodToAggregateStats()
-
-        //OtherMethodToAggregateStats()
+        public class CharacterStats
+        {
+            public string Name { get; set; }
+            public int IssueCount { get; set; }
+        }
 
     }
 }

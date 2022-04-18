@@ -87,29 +87,13 @@ namespace Capstone.Controllers
            Comic comicToAdd = apiService.AddOrCreateComic(comic);
 
            return collectionDao.AddComicToCollection(comicToAdd.ComicId, id);
-
-
-
-            //if comic doesn't exist in database
-            //comicdao.CreateComic THEN
-            //collectiondao.AddComicToCollection
-
-            //    //if comic does exist in database
-            //    //ONLY DO collectiondao.AddComicToCollection
-
-            //    //STILL TO CONFIRM: proper method for acquiring marvel_ID at this stage from Marvel API
-
-            //}
-
-            //public ActionResult<>
-
-
-
-
-
-
         }
 
-
+        [HttpGet("{id}/stats/characters")]
+        public List<Statistics.CharacterStats> CharacterStatsForCollection(int id)
+        {
+            return collectionDao.TotalComicsInCollectionByCharacter(id);
+        }
+       
     }
 }
