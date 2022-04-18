@@ -56,27 +56,40 @@ export default {
     },
     methods:{
         addComic(comic) {
+            console.log(comic)
             localService
             .addComicToCollection(comic, this.selectedCollection).then(response => {
-                if(response.status ==201){
-                    this.$router.push('/comic');
+                if(response.status===200){
+                    //'🗸';
+                    alert("Comic was successfully added");
                 }
             })
             .catch(error => {
             if(error.response){
-              this.errorMsg = "Error submitting. Response received was '" + error.response.statusText + "'.";
+                if(error.response.status===404){
+                    alert("Please select a collection to add.");
+                }
+                else{
+                    alert("Error submitting. Error code:"+error.response.status);
+                }
             }
             else if(error.request) {
-              this.errorMsg = "Error submitting. Server could not be reached.";
+              alert("Error submitting. Server could not be reached.");
             }
             else {
-              this.errorMsg = "Error submitting. Request could not be created.";
+              alert("Error submitting. Request could not be created.");
             }
             });
              },
       searchByTitle(){
           localService.searchComicByTitle({params:{titleSearch:this.searchTitle}}).then(response =>{
-             this.comics=response.data;
+             if(response.status===200){
+                 this.comics=response.data;
+                 if(this.comics.length===0){
+                     alert("Sorry..Nothing was found");
+                 }
+             }
+             
       })
     },
 }
@@ -155,8 +168,8 @@ justify-content: space-evenly;}
 .cover-img.active,
 .cover-img:hover {
     transition: margin .3s ease-in-out;
-    margin-bottom: .4em;
-    margin-top: -.4em;
+    margin-bottom: .3em;
+    margin-top: -.3em;
 }
 
 .comic-card {

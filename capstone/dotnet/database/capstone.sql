@@ -36,7 +36,7 @@ CREATE TABLE comics (
 	--maybe link this to the API id number
 	comic_id int IDENTITY(1,1) NOT NULL,
 	marvel_id VARCHAR(100),
-	title varchar(50) NOT NULL,
+	title varchar(100) NOT NULL,
 	issue_number int NOT NULL,
 	description varchar(max),
 	cover_img varchar(100),
