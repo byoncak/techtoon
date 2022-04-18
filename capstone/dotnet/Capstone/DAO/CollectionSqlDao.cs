@@ -120,20 +120,27 @@ namespace Capstone.DAO
         }
         public void AddComicToCollection(int comicId, int collectionId)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                //Error handle for duplicate add
-                conn.Open();
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    //Error handle for duplicate add
+                    conn.Open();
 
-                
-                SqlCommand cmd = new SqlCommand("INSERT INTO comics_collections (comic_id, collection_id) " +
-                                                "VALUES (@comic_id, @collection_id); ", conn);
-                cmd.Parameters.AddWithValue("@comic_id", comicId);
-                cmd.Parameters.AddWithValue("@collection_id", collectionId);
 
-                cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO comics_collections (comic_id, collection_id) " +
+                                                    "VALUES (@comic_id, @collection_id); ", conn);
+                    cmd.Parameters.AddWithValue("@comic_id", comicId);
+                    cmd.Parameters.AddWithValue("@collection_id", collectionId);
 
+                    cmd.ExecuteNonQuery();
+
+                }
             }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            
         }
 
         public List<Collection> GetCollectionByUserName(string username)

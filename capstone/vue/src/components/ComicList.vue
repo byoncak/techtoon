@@ -56,7 +56,6 @@ export default {
     },
     methods:{
         addComic(comic) {
-            console.log(comic)
             localService
             .addComicToCollection(comic, this.selectedCollection).then(response => {
                 if(response.status===200){
