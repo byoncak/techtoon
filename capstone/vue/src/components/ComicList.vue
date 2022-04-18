@@ -58,15 +58,23 @@ export default {
         addComic(comic) {
             localService
             .addComicToCollection(comic, this.selectedCollection).then(response => {
-                if(response.status===200){
+                console.log(response.status)
+                console.log(response.data)
+                if(response.status===200 && response.data==true){
                     //'🗸';
-                    alert("Comic was successfully added");
+                    alert("Comic was successfully added.");
+                }
+                else{
+                    alert("Comic already added in current collection.")
                 }
             })
             .catch(error => {
             if(error.response){
                 if(error.response.status===404){
                     alert("Please select a collection to add.");
+                }
+                else if(error.response.status===500){
+                    alert("Comic already exist in the selected collection")
                 }
                 else{
                     alert("Error submitting. Error code:"+error.response.status);
@@ -85,7 +93,8 @@ export default {
              if(response.status===200){
                  this.comics=response.data;
                  if(this.comics.length===0){
-                     alert("Sorry..Nothing was found");
+                     this.router.push("/comics");
+                     alert("Sorry...Nothing was found");
                  }
              }
              

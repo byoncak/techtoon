@@ -118,9 +118,28 @@ namespace Capstone.DAO
             }
             return comicList;  
         }
-        public void AddComicToCollection(int comicId, int collectionId)
+
+        public int CheckComicInCollection(int comicId, int collectionId)
         {
-            try {
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT COUNT (*) FROM comics_collections WHERE comic_id=@comic_id AND collection_id=@collection_id;", conn);
+                cmd.Parameters.AddWithValue("@comic_id", comicId);
+                cmd.Parameters.AddWithValue("@collection_id", collectionId);
+
+                count = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            return count;
+        }
+
+        public bool AddComicToCollection(int comicId, int collectionId)
+        {
+            bool inCollection = false;
+            int checkBeforeAdd = CheckComicInCollection(comicId, collectionId);
+            if (checkBeforeAdd == 0)
+            {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     //Error handle for duplicate add
@@ -135,12 +154,10 @@ namespace Capstone.DAO
                     cmd.ExecuteNonQuery();
 
                 }
+                inCollection = true;
             }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e);
-            }
-            
+            return inCollection;
+
         }
 
         public List<Collection> GetCollectionByUserName(string username)

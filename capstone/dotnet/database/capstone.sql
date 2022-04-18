@@ -39,7 +39,7 @@ CREATE TABLE comics (
 	title varchar(100) NOT NULL,
 	issue_number int NOT NULL,
 	description varchar(max),
-	cover_img varchar(100),
+	cover_img varchar(max),
 	CONSTRAINT PK_comics PRIMARY KEY (comic_id),
 	)
 CREATE TABLE comics_collections(
