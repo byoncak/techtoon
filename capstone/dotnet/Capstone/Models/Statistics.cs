@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 namespace Capstone.Models
 {
     public class Statistics
-    {
+    {   
+        public int TotalComicCount { get; set; }
+
         public class CharacterStats
         {
             public string Name { get; set; }

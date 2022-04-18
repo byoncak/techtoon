@@ -205,17 +205,22 @@ namespace Capstone.DAO
         }
         
         //THIS IS A BASIC STATS QUERY WE CAN TEST OUR FRONT END WITH
-        public int TotalComicsInCollection(int collectionId)
+        public Statistics TotalComicsInCollection(int collectionId)
         {
             
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                Statistics stats = new Statistics();
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT COUNT (*) FROM comics_collections WHERE collection_id = @collection_id", conn);
+                SqlCommand cmd = new SqlCommand("SELECT COUNT (*) as totalComics FROM comics_collections WHERE collection_id = @collection_id", conn);
                 cmd.Parameters.AddWithValue("@collection_id", collectionId);
-                return Convert.ToInt32(cmd.ExecuteScalar());
-
-
+               
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    stats.TotalComicCount = Convert.ToInt32(reader["totalComics"]);
+                }
+                return stats;
             }
         }
 
@@ -241,7 +246,23 @@ namespace Capstone.DAO
 
             }
         }
+        public Statistics TotalComicsInAllCollections()
+        {
 
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                Statistics stats = new Statistics();
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT COUNT (*) as totalComics FROM comics_collections;", conn);
+                
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    stats.TotalComicCount = Convert.ToInt32(reader["totalComics"]);
+                }
+                return stats;
+            }
+        }
 
         private Collection GetCollectionFromReader(SqlDataReader reader)
         {

@@ -27,6 +27,7 @@ namespace Capstone.DAO
 
         public List<Collection> GetOtherPublicCollection(int userId);
         public List<Statistics.CharacterStats> TotalComicsInCollectionByCharacter(int collectionId);
+        public Statistics TotalComicsInCollection(int collectionId);
 
     }
 }
