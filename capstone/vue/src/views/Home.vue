@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <home-hero/>
-    <h2> New Releases </h2>
+  <div class="new-releases">
+  New Releases 
+  </div>
     <comic-list/>
   </div>
 </template>
@@ -20,4 +22,16 @@ export default {
 
 <style>
 
+
+.new-releases {
+  font-size:2vw;
+  font-weight: 600;
+  margin-top: 2em;
+  padding-top:1em;
+  background-color: white;
+  display:flex;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
 </style>

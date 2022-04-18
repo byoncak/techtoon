@@ -3,8 +3,7 @@
     <login-hero/>
     <div class="bg">
     <div class="form-center">
-    <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Sign In to View Your Comics</h1>
+    <form class="signin-form" @submit.prevent="login">
       <div
         class="alert alert-danger"
         role="alert"
@@ -36,7 +35,7 @@
         required
       />
       </div>
-      <router-link class="link" :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link class="need-an-account" :to="{ name: 'register' }">Need an account?</router-link>
       <button type="submit">Sign in</button>
     </form>
     </div>
@@ -86,76 +85,50 @@ export default {
 
 <style>
 
-.form-center{
-  display: flex;
-  justify-content: center;
+
+.text-center{
+  background-color: blueviolet;
 }
 
-.bg{
-
-}
-
-.link {
+.need-an-account {
   color:black
 }
 
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
+.form-control {
+  width: 50vw;
+  max-width: 40em;
+  padding: 12px 12px;
+  margin: 8px 0; 
+  border: 1px solid rgb(168, 168, 168);
   border-radius: 4px;
-  box-sizing: border-box;
 }
 
-input[type=password], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.h3 {
-  margin-top: -3.2em;
-  display: flex;
+.form-center {
+  flex-direction: column;
+  display:flex;
+  align-content: center;
   justify-content: center;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  align-items: center;
+  margin-bottom: 4em;
 }
 
-.form-signin {
+.signin-form {
 
     background-color: blueviolet;
-    padding: 5em;
-    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-content: center;
     align-items: center;
+    justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-weight: 600;
     row-gap: 1em;
-    width: 24vw;
-    height: 12vh;
-    margin-bottom: 4.4em;
-}
+    }
 
-.form-input {
-  margin-top: 2em;
+#login {
   display: flex;
   flex-direction: column;
-  width: 24vw;
-}
-
-form {
-  background: white;
-  display: flex;
-  justify-content: center;
 }
 
 </style>

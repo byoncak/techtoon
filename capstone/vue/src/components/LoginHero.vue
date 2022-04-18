@@ -1,10 +1,19 @@
 <template>
   <div class="login-hero">
+      <div class="login-title-block">
     <div class="login-title">
         Welcome to
-        <img class="logo" :src="image"/>
     </div>
     </div>
+    <div class="logo-container">
+        <img class="login-logo" :src="image"/>
+    </div>
+    <div class="sign-in-title-block">
+    <div class="sign-in-title">
+    Sign In to View Your Comics
+    </div>
+    </div>
+</div>
 </template>
 
 <script>
@@ -21,51 +30,54 @@ export default {
 
 <style>
 
+.sign-in-title-block {
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 2em;
+    margin-top: -3vw;
+}
+
+.sign-in-title{
+    font-size: min(2.8vw, 32px) ;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-width: 40%;
+    max-width: 50%;
+}
+
 .login-hero {
-    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    background-color: blueviolet;
+}
+
+.login-title-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -4vw;
 }
 
 .login-title {
     color:white;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 800;
-    font-size: 3.2em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    max-width: 30vw;
-    margin: auto;
+    font-size: max(2.4vw, 16px);
+    align-content: center;
+    max-width: 40vw;
     margin-top:1em;
 }
-.home-buttons {
-    display: inline-block;
-    width: 240px;
-    margin: 16px;
-    padding: 16px;
-    padding-left:32px;
-    padding-right:32px;
-    border-radius: 50px;
-    text-decoration:none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight:600;
-    color:white;
-    background-color: cornflowerblue;
-    text-align:center;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-}
 
-.button-group {
-    margin-top: -2em;
+.logo-container {
     display: flex;
     justify-content: center;
 }
-
-.logo {
-    margin-bottom: -.4em;
-    margin-top: -.5em;
-    width: 32vw;
+.login-logo{
+    width: 44%;
 }
 </style>

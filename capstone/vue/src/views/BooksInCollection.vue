@@ -1,7 +1,7 @@
 <template>
   <div>
       <book-in-collection v-bind:collectionId="parseInt(this.$route.params.collectionId)"/>
-      <div class=link>
+      <div class="back-to-collection">
       <router-link :to="{ name:'collections' }"> Back to Collection </router-link>
       </div>
   </div>
@@ -18,8 +18,8 @@ export default {
 </script>
 
 <style>
-.link{
-    background-color:white;
+.back-to-collection{
+background-color: white;
 }
 
 </style>

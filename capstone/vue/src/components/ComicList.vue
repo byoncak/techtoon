@@ -19,7 +19,7 @@
             <div class="cover-img-container">
                 <img class="cover-img" :src="comic.coverImage">
             </div>
-            <div class="circle-btn-container">
+            <div class="circle-btn-container" >
                 <button v-on:click="addComic(comic)" class="circle-btn" style="border-radius:100%;">
                 <span class="circle-btn-content">+</span>
                 </button>
@@ -155,8 +155,8 @@ justify-content: space-evenly;}
 .cover-img.active,
 .cover-img:hover {
     transition: margin .3s ease-in-out;
-    margin-bottom: .3em;
-    margin-top: -.3em;
+    margin-bottom: .4em;
+    margin-top: -.4em;
 }
 
 .comic-card {
