@@ -24,9 +24,9 @@ namespace Capstone.DAO
                 //error handle for values entered as 'null'
                 
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO comics (title, marvel_id, issue_number, description, cover_img) " +
+                SqlCommand cmd = new SqlCommand("INSERT INTO comics (title, marvel_id, issue_number, description, cover_img, main_character) " +
                     "OUTPUT INSERTED.comic_id " +
-                    "VALUES (@title, @marvel_id, @issue_number, @description, @cover_img);", conn);
+                    "VALUES (@title, @marvel_id, @issue_number, @description, @cover_img, @main_character);", conn);
 
                 cmd.Parameters.AddWithValue("@title", comic.Title);
                 cmd.Parameters.AddWithValue("@marvel_id", comic.MarvelId);
@@ -40,6 +40,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@description", comic.Description);
                 }
                 cmd.Parameters.AddWithValue("@cover_img", comic.CoverImage);
+                cmd.Parameters.AddWithValue("@main_character", comic.MainCharacter);
 
                 newComicId = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -122,7 +123,8 @@ namespace Capstone.DAO
                 Title = Convert.ToString(reader["title"]),
                 IssueNumber = Convert.ToInt32(reader["issue_number"]),
                 Description = Convert.ToString(reader["description"]),
-                MarvelId = Convert.ToInt32(reader["marvel_id"])
+                MarvelId = Convert.ToInt32(reader["marvel_id"]),
+                MainCharacter = Convert.ToString(reader["main_character"])
 
             };
 

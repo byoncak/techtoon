@@ -72,7 +72,7 @@ namespace Capstone.Services
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        public List<object> items { get; set; }
+        public List<Item> items { get; set; }
         public int returned { get; set; }
     }
 
@@ -228,6 +228,15 @@ namespace Capstone.Services
             {
                 comic.CoverImage = @"https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_FMjpg_UX1000_.jpg";
             }
+            if (result.characters.available <= 0)
+            {
+                comic.MainCharacter = "Unknown";
+            }
+            else
+            {
+                comic.MainCharacter = result.characters.items[0].name;
+            }
+
 
             return comic;
         }

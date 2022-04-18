@@ -36,10 +36,11 @@ CREATE TABLE comics (
 	--maybe link this to the API id number
 	comic_id int IDENTITY(1,1) NOT NULL,
 	marvel_id VARCHAR(100),
-	title varchar(100) NOT NULL,
+	title varchar(max) NOT NULL,
 	issue_number int NOT NULL,
 	description varchar(max),
 	cover_img varchar(max),
+	main_character varchar(max),
 	CONSTRAINT PK_comics PRIMARY KEY (comic_id),
 	)
 CREATE TABLE comics_collections(

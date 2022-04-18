@@ -14,6 +14,8 @@ namespace Capstone.Models
         public string CoverImage { get; set; }
         public int MarvelId { get; set; }
 
+        public string MainCharacter { get; set; }
+
         public Comic()
         {
 
