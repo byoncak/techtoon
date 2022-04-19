@@ -45,6 +45,14 @@ getComicStatCharacter(id){
 
 getComicTotalInCollection(id){
   return axios.get(`/collections/${id}/stats`)
-}
+},
+
+getTotalComicsStats(){
+  return axios.get('/collections/stats/users')
+},
+
+getCharacterStats(){
+  return axios.get('/collections/stats/characters')
+},
 
 }

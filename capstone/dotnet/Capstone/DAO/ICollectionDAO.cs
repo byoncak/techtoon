@@ -30,7 +30,9 @@ namespace Capstone.DAO
         public Statistics TotalComicsInCollection(int collectionId);
 
         public void DeleteComicFromCollection(int comicId, int collectionId);
-        public List<Statistics.CharacterStats> TotalComicsInCollectionsByUserName();
+        public List<Statistics.UserStats> TotalComicsInCollectionsByUserName();
+
+        public List<Statistics.CharacterStats> GetCharacterForLeaderBoard();
 
     }
 }

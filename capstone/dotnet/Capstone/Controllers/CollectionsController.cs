@@ -95,10 +95,16 @@ namespace Capstone.Controllers
             return collectionDao.TotalComicsInCollectionByCharacter(id);
         }
 
-        [HttpGet("{id}/stats/user")]
-        public List<Statistics.CharacterStats> CharacterStatsForCollectionByUsername(int id)
+        [HttpGet("stats/users")]
+        public List<Statistics.UserStats> TotalComicsForCollectionByUsername()
         {
             return collectionDao.TotalComicsInCollectionsByUserName();
+        }
+
+        [HttpGet("stats/characters")]
+        public List<Statistics.CharacterStats> GetCharacterForLeaderBoard()
+        {
+            return collectionDao.GetCharacterForLeaderBoard();
         }
 
         [HttpGet("{id}/stats")]

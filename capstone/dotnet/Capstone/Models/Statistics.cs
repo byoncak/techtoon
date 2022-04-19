@@ -18,7 +18,7 @@ namespace Capstone.Models
         public class UserStats
         {
             public string UserName { get; set; }
-            public int TottalCount { get; set; }
+            public int TotalCount { get; set; }
 
         }
 

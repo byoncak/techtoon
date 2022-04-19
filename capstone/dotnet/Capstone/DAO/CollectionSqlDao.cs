@@ -239,21 +239,21 @@ namespace Capstone.DAO
             }
         }
 
-        public List<Statistics.CharacterStats> TotalComicsInCollectionsByUserName()
+        public List<Statistics.UserStats> TotalComicsInCollectionsByUserName()
         {
-            List<Statistics.CharacterStats> stats = new List<Statistics.CharacterStats>();
+            List<Statistics.UserStats> stats = new List<Statistics.UserStats>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT u.username, COUNT(*)FROM comics_collections cc JOIN collections c  ON cc.collection_id = c.collection_id " +
-                    "JOIN users u ON c.user_id = u.user_id GROUP BY u.username", conn);
+                SqlCommand cmd = new SqlCommand("SELECT u.username, COUNT(*) as total FROM comics_collections cc JOIN collections c  ON cc.collection_id = c.collection_id " +
+                    "JOIN users u ON c.user_id = u.user_id GROUP BY u.username ORDER BY (total) DESC", conn);
 
                 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
 
-                    stats.Add(GetCharStatsFromReader(reader));
+                    stats.Add(GetUserStatsFromReader(reader));
 
                 }
                 return stats;
@@ -282,6 +282,30 @@ namespace Capstone.DAO
 
             }
         }
+
+        public List<Statistics.CharacterStats> GetCharacterForLeaderBoard()
+        {
+            List<Statistics.CharacterStats> stats = new List<Statistics.CharacterStats>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT c.main_character, COUNT (main_character) as total FROM comics c " +
+                    "JOIN comics_collections cc ON c.comic_id = cc.comic_id " +
+                    "WHERE c.main_character != 'Unknown' " +
+                    "GROUP BY c.main_character ORDER BY(total) DESC", conn);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    stats.Add(GetCharStatsFromReader(reader));
+
+                }
+                return stats;
+
+            }
+        }
+
         public Statistics TotalComicsInAllCollections()
         {
 
@@ -342,6 +366,20 @@ namespace Capstone.DAO
             return stats;
         
         }
+
+        private Statistics.UserStats GetUserStatsFromReader(SqlDataReader reader)
+        {
+            Statistics.UserStats stats = new Statistics.UserStats()
+            {
+                UserName = Convert.ToString(reader["username"]),
+                TotalCount = Convert.ToInt32(reader["total"])
+            };
+
+            return stats;
+
+        }
+
+
 
 
     }
