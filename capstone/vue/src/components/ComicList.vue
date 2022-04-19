@@ -2,7 +2,7 @@
 <div class="comic-list-page">
     <div class="search-bar">
         <form v-on:submit.prevent>
-        <input class="search-form-control" name="searchTitle" type="text" v-model="searchTitle" placeholder="Search for Comic" />
+        <input class="search-form-control" name="searchTitle" type="text" v-model="searchTitle" placeholder="Search for Comic" v-on:keyup.enter="searchByTitle"/>
       </form>
       <button class="search-button" type="submit" v-on:click="searchByTitle">Search</button>
     </div>
@@ -95,7 +95,7 @@ export default {
                  this.comics=response.data;
                  this.searchTitle='';
                  if(this.comics.length===0){
-                     this.router.push("/comics");
+                     this.$router.push("/comics");
                      alert("Sorry...Nothing was found");
                  }
              }
