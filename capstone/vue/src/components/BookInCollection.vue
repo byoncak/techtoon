@@ -90,12 +90,14 @@ export default {
 .stats{
     display: flex;
     flex-direction: column;
+    width: 300px;
 }
 
 .stats .character{
-    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    margin:10px;
     height: 50px;
-    border: 1px solid blue;
 }
 
 
