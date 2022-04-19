@@ -27,6 +27,10 @@ addComicToCollection(comic, collectionId){
   return axios.post(`/collections/${collectionId}/comics`, comic);
 },
 
+deleteComicFromCollection(collectionId,comicId){
+  return axios.put(`/collections/${collectionId}/comics/${comicId}`);
+},
+
 getComicsList(){
   return axios.get('/comics');
 },

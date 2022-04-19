@@ -7,7 +7,7 @@
                         <img class="cover-img" :src="book.coverImage">
                 </div>
                 <div class="circle-btn-container" >
-                        <button class="circle-btn" style="border-radius:100%;">
+                        <button v-on:click='deleteComic(book)' class="circle-btn" style="border-radius:100%;">
                         <span class="circle-btn-content">-</span>
                         </button>
                 </div>
@@ -50,8 +50,35 @@ export default {
         localService.getComicTotalInCollection(this.collectionId).then(response =>{
                 this.totalComic=response.data;
             });
+    },
+    methods:{
+        deleteComic(book) {
+            localService.deleteComicFromCollection(this.collectionId,book.comicId).then(response=>{
+                if(response.status==200){
+                    localService.getCollectionById(this.collectionId).then(response =>{
+                    this.books=response.data;
+                    });
+                    localService.getComicStatCharacter(this.collectionId).then(response =>{
+                    this.characters=response.data;
+                    });
+                    localService.getComicTotalInCollection(this.collectionId).then(response =>{
+                    this.totalComic=response.data;
+                    });
+                }
+            })
+            .catch(error => {
+            if(error.response){
+                    alert("Error submitting. Error code:"+error.response.status);
+                }
+            else if(error.request) {
+              alert("Error submitting. Server could not be reached.");
+            }
+            else {
+              alert("Error submitting. Request could not be created.");
+            }
+            });
+        }
     }
-
 }
 </script>
 

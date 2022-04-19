@@ -100,6 +100,13 @@ namespace Capstone.Controllers
         {
             return collectionDao.TotalComicsInCollection(id);
         }
-   
+
+        [HttpPut("{collectionId}/comics/{comicId}")]
+        public void DeleteComicFromCollection(int comicId, int collectionId)
+        {
+            collectionDao.DeleteComicFromCollection(comicId, collectionId);
+        }
+
+
     }
 }

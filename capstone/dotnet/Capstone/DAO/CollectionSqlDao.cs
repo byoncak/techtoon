@@ -160,6 +160,21 @@ namespace Capstone.DAO
 
         }
 
+        public void DeleteComicFromCollection(int comicId, int collectionId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+
+                SqlCommand cmd = new SqlCommand("DELETE FROM comics_collections WHERE comic_id=@comic_id AND collection_id=@collection_id; ", conn);
+                cmd.Parameters.AddWithValue("@comic_id", comicId);
+                cmd.Parameters.AddWithValue("@collection_id", collectionId);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public List<Collection> GetCollectionByUserName(string username)
         {
             List<Collection> collections = new List<Collection>();

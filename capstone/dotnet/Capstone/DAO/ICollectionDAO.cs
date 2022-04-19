@@ -23,11 +23,13 @@ namespace Capstone.DAO
         public List<Collection> GetAllCollections();
 
         public List<Comic> GetComicsInCollection(int collectionId);
-        //
+       
 
         public List<Collection> GetOtherPublicCollection(int userId);
         public List<Statistics.CharacterStats> TotalComicsInCollectionByCharacter(int collectionId);
         public Statistics TotalComicsInCollection(int collectionId);
+
+        public void DeleteComicFromCollection(int comicId, int collectionId);
 
     }
 }
