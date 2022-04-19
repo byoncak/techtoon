@@ -1,6 +1,7 @@
 ﻿using Capstone.DAO;
 using Capstone.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using Capstone.Services;
 
@@ -8,7 +9,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-
+    [Authorize]
     public class ComicsController : ControllerBase
     {
         private readonly IComicDAO comicDao;
@@ -26,6 +27,7 @@ namespace Capstone.Controllers
         {
             return comicDao.CreateComic(comic);
         }
+        [AllowAnonymous]
         [HttpGet()]
         public List<Comic> GetListOfComics()
         {

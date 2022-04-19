@@ -160,7 +160,7 @@ namespace Capstone.Services
         //THIS IS A BASIC SEARCH BY TITLE WE CAN LINK TO THE FRONT END AND THEN EXPAND UPON ONCE WE KNOW IT WORKS
         public List<Comic> GetComicsFromMarvelByTitle(string titleSearch)
         {
-            RestRequest request = new RestRequest("v1/public/comics?title=" + titleSearch + "&orderBy=-focDate&" + apiKey);
+            RestRequest request = new RestRequest("v1/public/comics?title=" + titleSearch + "&orderBy=-focDate&limit=100&" + apiKey);
             IRestResponse<Root> response = client.Get<Root>(request);
             List<Comic> comics = new List<Comic>();
             for (int i = 0; i < response.Data.data.results.Count; i++)
@@ -175,7 +175,7 @@ namespace Capstone.Services
 
         public List<Comic> GetComicsFromMarvel()
         {
-            RestRequest request = new RestRequest("v1/public/comics?orderBy=-focDate&" + apiKey);
+            RestRequest request = new RestRequest("v1/public/comics?orderBy=-focDate&limit=100&" + apiKey);
             IRestResponse<Root> response = client.Get<Root>(request);
             List<Comic> comics = new List<Comic>();
             for (int i = 0; i < response.Data.data.results.Count; i++)

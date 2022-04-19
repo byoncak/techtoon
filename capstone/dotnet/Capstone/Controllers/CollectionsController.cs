@@ -13,7 +13,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-
+    [Authorize]
     public class CollectionsController : ControllerBase
     {
         private readonly ICollectionDAO collectionDao;
@@ -71,13 +71,20 @@ namespace Capstone.Controllers
         {
             return collectionDao.GetComicsInCollection(id);
         }
-
+        [AllowAnonymous]
         [HttpGet("public-collection")]
         public List<Collection> GetOtherPublicCollection()
         {
-            string id = User.FindFirst("sub").Value;
-            int userNumber = Convert.ToInt32(id);
-            return collectionDao.GetOtherPublicCollection(userNumber);
+            string id = User.FindFirst("sub")?.Value;
+            if (id != null)
+            {
+                int userNumber = Convert.ToInt32(id);
+                return collectionDao.GetOtherPublicCollection(userNumber);
+            }
+            else
+            {
+                return collectionDao.GetOtherPublicCollection(0);
+            }
         }
 
         [HttpPost("{id}/comics")] //endpoint TBD
@@ -94,19 +101,19 @@ namespace Capstone.Controllers
         {
             return collectionDao.TotalComicsInCollectionByCharacter(id);
         }
-
+        [AllowAnonymous]
         [HttpGet("stats/users")]
         public List<Statistics.UserStats> TotalComicsForCollectionByUsername()
         {
             return collectionDao.TotalComicsInCollectionsByUserName();
         }
-
+        [AllowAnonymous]
         [HttpGet("stats/characters")]
         public List<Statistics.CharacterStats> GetCharacterForLeaderBoard()
         {
             return collectionDao.GetCharacterForLeaderBoard();
         }
-
+        
         [HttpGet("{id}/stats")]
         public Statistics TotalComicsInCollection(int id)
         {
