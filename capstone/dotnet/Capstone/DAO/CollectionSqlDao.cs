@@ -287,6 +287,7 @@ namespace Capstone.DAO
                 IssueNumber = Convert.ToInt32(reader["issue_number"]),
                 Description = Convert.ToString(reader["description"]),
                 MarvelId = Convert.ToInt32(reader["marvel_id"]),
+                CoverImage = Convert.ToString(reader["cover_img"]),
                 MainCharacter = Convert.ToString(reader["main_character"])
 
             };

@@ -35,4 +35,12 @@ searchComicByTitle(title,character){
   return axios.get('/comics/searchTitle',title,character)
 },
 
+getComicStatCharacter(id){
+  return axios.get(`/collections/${id}/stats/characters`)
+},
+
+getComicTotalInCollection(id){
+  return axios.get(`/collections/${id}/stats`)
+}
+
 }
