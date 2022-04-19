@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-image">
   <div id="app">
+    <div class="bg-image">
     <div id="nav">
     <router-link class="nav-btn1" v-bind:to="{ name: 'home' }">Home</router-link>
     <router-link class="nav-btn2" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
@@ -19,9 +19,11 @@
 
 .bg-image{
   background-image: url('https://images.hdqwalls.com/download/marvel-superhero-8k-digital-art-fd-7680x4320.jpg');
-  box-shadow:inset 0 0 0 2000px rgba(60, 7, 129, 0.7);
-  width: 100%;
-  background-size: cover;
+  box-shadow:inset 0 0 0 2000px rgba(60, 7, 129, 0.6);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  transition: background-size, .5s ease-in-out;
+
 }
 
 #nav {
@@ -70,6 +72,19 @@
   margin: 8px;
   border-radius: 50px;
   text-decoration: none;
+}
+
+
+@media(max-width: 780px) {
+  .bg-image {
+    background-color: white;
+    box-shadow:inset 0 0 0 2000px rgba(60, 7, 129, .6);
+    /* height: 210px; */
+    transition: background-size, .4s ease-in-out;
+    background-size: 170%;
+    overflow: hidden;
+    
+  }
 }
 
 </style>

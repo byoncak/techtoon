@@ -74,4 +74,7 @@ export default {
     margin-top: .4em;
     width: 40vw;
 }
+
+
+
 </style>
