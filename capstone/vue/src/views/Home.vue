@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <home-hero/>
-  <div class="new-releases">
+  <!-- <div class="new-releases">
   New Releases 
-  </div>
+  </div> -->
     <comic-list/>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
 <style>
 
 
-.new-releases {
+/* .new-releases {
   font-size:2vw;
   font-weight: 600;
   margin-top: 2em;
@@ -33,5 +33,5 @@ export default {
   justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
 
-}
+} */
 </style>
