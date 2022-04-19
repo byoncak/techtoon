@@ -27,8 +27,8 @@
                 <img class="cover-img" :src="comic.coverImage">
             </div>
             <div class="circle-btn-container">
-                <select class="circle-btn" style="border-radius:100%;" v-model="selectedCollection" v-on:change="addComic(comic)">
-                    <optgroup label="Add to Collections">
+                <select class="circle-btn" label="Add To Collection" style="border-radius:100%;" id="selected-collection" v-model="selectedCollection" v-on:change="addComic(comic)">
+                    <optgroup label = "Add To Collection:">
                     <option v-for="collection in collections" v-bind:key="collection.id" :value="collection.collectionId">{{collection.collectionName}}</option>
                     </optgroup>
                 </select>
@@ -137,10 +137,12 @@ export default {
 
 <style>
 
+
 .circle-btn-container{
     display:flex;
     margin-left: 6em;
     margin-bottom: 1em;
+    transition: height, width .2s ease-in;
 }
 
 
@@ -148,13 +150,12 @@ export default {
 .circle-btn:hover {
         height: 1.8em;
         width: 1.8em;
-        transition: height, width .2s ease-in-out;
+        transition: height, width .2s ease-in;
         transition: background-color .2s ease-in;
         background-color: cornflowerblue;
 }
 
 .circle-btn {
-    appearance: none;
     transition: background-color .2s ease-in;
     font-family: Arial, Helvetica, sans-serif;
     font-size:xx-large;
@@ -170,8 +171,6 @@ export default {
     cursor:pointer;
     margin-top: 0em;
     position: absolute;
-    transition: margin .2s ease-in-out;
-    transition: height, width .2s ease-in-out;
 }
 
 .comic-list-page {
@@ -181,19 +180,29 @@ export default {
 
 .comic-list-container{
     display: flex;
-    margin-left:16vw;
-    margin-right: 16vw;
+    margin-left:12vw;
+    margin-right: 12vw;
     flex-wrap: wrap;
-justify-content: space-evenly;}
+    justify-content: center;
 
+
+}
+
+.comic-list {
+    margin-right: -1em;
+    display: flex;
+    justify-content: flex-start;
+}
 .cover-img-container {
     display: flex;
     cursor: pointer;
     z-index: 3;
     margin-top:0em;
+    max-width: 260px;
     height: 320px;
+    width: 260px;
     margin-bottom: -3em;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 }
 
 .cover-img {
@@ -206,17 +215,16 @@ justify-content: space-evenly;}
 .cover-img.active,
 .cover-img:hover {
     transition: margin .3s ease-in-out;
-    margin-bottom: .3em;
-    margin-top: -.3em;
+    margin-bottom: .4em;
+    margin-top: -.4em;
 }
 
 .comic-card {
   align-content: flex-start;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   font-size: 1.5rem;
   z-index: 1;
   margin-top: 2em;
-  margin-right: 1em;
   margin-bottom: -3em
 }
 
@@ -246,17 +254,26 @@ justify-content: space-evenly;}
     
 }
 
+option, optgroup{
+    color: white;
+ font-size: 24px;
+}
+
+option disabled{
+    color: white;
+}
 .search-form-control {
+  font-size: 16px;
   display: inline-block;
   width: 50vw;
   max-width: 40em;
-  padding: 12px 12px;
-  border: 1px solid rgb(168, 168, 168);
+  padding: 16px 12px;
+  border: 1px solid blueviolet;
   border-radius: 80px;
 }
 
 ::placeholder{
-    color:lightblue;
+    color:rgb(120, 167, 228);
     padding-left: 1em;
 }
 
@@ -266,13 +283,21 @@ justify-content: space-evenly;}
     border-radius: 80px;
     width: 12em;
     height: 3.2em;
+    background-color:blueviolet;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    padding-top: -4px;
 }
 
-.selected-collection{
-    background-image: url(https://img.icons8.com/ios/250/000000/delete-sign.png);
-    rotate: 180;
-    display: flex;
-    justify-content: center;
+#selected-collection{
+  appearance: none;
+  overflow: hidden;
+  background: url("../assets/add_white_36dp.svg") no-repeat center blueviolet;
+  background-color: blueviolet;
+  color:white;
+  z-index: 5;
 }
 
 </style>

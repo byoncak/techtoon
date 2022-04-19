@@ -8,7 +8,7 @@
                 </div>
                 <div class="circle-btn-container" >
                         <button v-on:click='deleteComic(book)' class="circle-btn-delete" style="border-radius:100%;">
-                        <span class="circle-btn-content">X</span>
+                        <img src="../assets/close_white_36dp.svg" class="circle-btn-content"/>
                         </button>
                 </div>
                 <div class="title-block">
@@ -101,6 +101,10 @@ export default {
 }
 
 .circle-btn-content {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin:auto;
     
 }
 
@@ -129,8 +133,10 @@ export default {
     cursor:pointer;
     margin-top: 0em;
     position: absolute;
-    transition: margin .2s ease-in-out;
-    transition: height, width .2s ease-in-out;
+}
+
+.x {
+    margin-top: ;
 }
 
 
