@@ -18,12 +18,11 @@
             <div class="cover-img-container">
                 <img class="cover-img" :src="comic.coverImage">
             </div>
-            <div class="circle-btn-container" >
-                <select class="circle-btn" style="border-radius:100%;">
-                    <optgroup label="Existing Collections">
+            <div class="circle-btn-container">
+                <select class="circle-btn" style="border-radius:100%;" v-model="selectedCollection" v-on:change="addComic(comic)">
+                    <optgroup label="Add to Collections">
                     <option v-for="collection in collections" v-bind:key="collection.id" :value="collection.collectionId">{{collection.collectionName}}</option>
                     </optgroup>
-                    <option value="b">+ New Collection</option>
                 </select>
             </div>
             <div class="title-block">
