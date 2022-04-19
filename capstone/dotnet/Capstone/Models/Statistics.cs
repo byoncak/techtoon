@@ -15,5 +15,12 @@ namespace Capstone.Models
             public int IssueCount { get; set; }
         }
 
+        public class UserStats
+        {
+            public string UserName { get; set; }
+            public int TottalCount { get; set; }
+
+        }
+
     }
 }
