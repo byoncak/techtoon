@@ -3,7 +3,6 @@
   <div id="app">
     <div id="nav">
     <router-link class="nav-btn1" v-bind:to="{ name: 'home' }">Home</router-link>
-    <router-link class="nav-btn3" v-bind:to="{ name: 'comics-list' }" v-if="$store.state.token != ''">Search Comics</router-link>
     <router-link class="nav-btn2" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
@@ -28,10 +27,9 @@
 #nav {
   font-weight: 400;
   display: flex;
+  justify-content: flex-end;
   padding-top: 16px;
   padding-right: 16px;
-  justify-content: center;
-  justify-content: space-around;
   font-size: 1em;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;

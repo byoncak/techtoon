@@ -126,6 +126,7 @@ export default {
 }
 
 .circle-btn {
+    appearance: none;
     transition: background-color .2s ease-in;
     font-family: Arial, Helvetica, sans-serif;
     font-size:xx-large;
@@ -240,6 +241,8 @@ justify-content: space-evenly;}
 }
 
 .selected-collection{
+    background-image: url(https://img.icons8.com/ios/250/000000/delete-sign.png);
+    rotate: 180;
     display: flex;
     justify-content: center;
 }
