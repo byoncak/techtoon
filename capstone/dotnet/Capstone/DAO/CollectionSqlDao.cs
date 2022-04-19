@@ -239,6 +239,27 @@ namespace Capstone.DAO
             }
         }
 
+        public List<Statistics.CharacterStats> TotalComicsInCollectionsByUserName()
+        {
+            List<Statistics.CharacterStats> stats = new List<Statistics.CharacterStats>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT u.username, COUNT(*)FROM comics_collections cc JOIN collections c  ON cc.collection_id = c.collection_id " +
+                    "JOIN users u ON c.user_id = u.user_id GROUP BY u.username", conn);
+
+                
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    stats.Add(GetCharStatsFromReader(reader));
+
+                }
+                return stats;
+
+            }
+        }
         public List<Statistics.CharacterStats> TotalComicsInCollectionByCharacter(int collectionId)
         {
             List<Statistics.CharacterStats> stats = new List<Statistics.CharacterStats>();
