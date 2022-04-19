@@ -8,7 +8,7 @@
                 </div>
                 <div class="circle-btn-container" >
                         <button v-on:click='deleteComic(book)' class="circle-btn-delete" style="border-radius:100%;">
-                        <img src="../assets/close_white_36dp.svg" class="circle-btn-content"/>
+                        <img src="../assets/close_white_36dp.svg" class="circle-btn-content-delete"/>
                         </button>
                 </div>
                 <div class="title-block">
@@ -100,7 +100,7 @@ export default {
     height: 50px;
 }
 
-.circle-btn-content {
+.circle-btn-content-delete {
     display: flex;
     justify-content: center;
     align-content: center;
