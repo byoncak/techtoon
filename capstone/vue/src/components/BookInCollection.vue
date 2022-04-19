@@ -135,9 +135,6 @@ export default {
     position: absolute;
 }
 
-.x {
-    margin-top: ;
-}
 
 
 </style>

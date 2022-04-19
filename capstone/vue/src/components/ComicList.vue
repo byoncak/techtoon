@@ -27,7 +27,7 @@
                 <img class="cover-img" :src="comic.coverImage">
             </div>
             <div class="circle-btn-container">
-                <select class="circle-btn" label="Add To Collection" style="border-radius:100%;" id="selected-collection" v-model="selectedCollection" v-on:change="addComic(comic)">
+                <select name="" class="circle-btn" style="border-radius:100%;" id="selected-collection" v-model="selectedCollection" v-on:change="addComic(comic)" >
                     <optgroup label = "Add To Collection:">
                     <option v-for="collection in collections" v-bind:key="collection.id" :value="collection.collectionId">{{collection.collectionName}}</option>
                     </optgroup>
@@ -72,35 +72,43 @@ export default {
                 });
     },
     methods:{
+        resetSelect(select){
+            select.selectIndex = 0;
+        },
         addComic(comic) {
             localService
             .addComicToCollection(comic, this.selectedCollection).then(response => {
                 if(response.status===200 && response.data==true){
                     //'🗸';
-                    alert("Comic was successfully added.");
                     this.selectedCollection='';
+                    alert("Comic was successfully added.");
                 }
                 else{
-                    alert("Comic already added in current collection.")
                     this.selectedCollection='';
+                    alert("Comic already added in current collection.")
                 }
             })
             .catch(error => {
             if(error.response){
                 if(error.response.status===404){
+                                        this.selectedCollection='';
                     alert("Please select a collection to add.");
                 }
                 else if(error.response.status===500){
+                                        this.selectedCollection='';
                     alert("Comic already exist in the selected collection")
                 }
                 else{
+                                        this.selectedCollection='';
                     alert("Error submitting. Error code:"+error.response.status);
                 }
             }
             else if(error.request) {
+                                    this.selectedCollection='';
               alert("Error submitting. Server could not be reached.");
             }
             else {
+                                    this.selectedCollection='';
               alert("Error submitting. Request could not be created.");
             }
             });
@@ -188,6 +196,12 @@ export default {
 
 }
 
+.circle-btn-content {
+    padding-left: 80px;
+    z-index: 5;
+    background-color: blueviolet;
+}
+
 .comic-list {
     margin-right: -1em;
     display: flex;
@@ -254,14 +268,17 @@ export default {
     
 }
 
-option, optgroup{
+optgroup{
     color: white;
  font-size: 24px;
 }
 
-option disabled{
-    color: white;
+option selected{
+    color: blueviolet;
 }
+
+
+
 .search-form-control {
   font-size: 16px;
   display: inline-block;
@@ -298,6 +315,10 @@ option disabled{
   background-color: blueviolet;
   color:white;
   z-index: 5;
+}
+
+select :default {
+    color:blueviolet
 }
 
 </style>
