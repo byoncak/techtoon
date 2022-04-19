@@ -95,7 +95,6 @@ export default {
                  this.comics=response.data;
                  this.searchTitle='';
                  if(this.comics.length===0){
-                     this.$router.push("/");
                      alert("Sorry...Nothing was found");
                  }
              }
