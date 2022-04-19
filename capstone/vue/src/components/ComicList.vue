@@ -59,14 +59,14 @@ export default {
         addComic(comic) {
             localService
             .addComicToCollection(comic, this.selectedCollection).then(response => {
-                console.log(response.status)
-                console.log(response.data)
                 if(response.status===200 && response.data==true){
                     //'🗸';
                     alert("Comic was successfully added.");
+                    this.selectedCollection='';
                 }
                 else{
                     alert("Comic already added in current collection.")
+                    this.selectedCollection='';
                 }
             })
             .catch(error => {
