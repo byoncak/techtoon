@@ -246,6 +246,7 @@ export default {
     display:flex;
     justify-content: center;
     padding: 2em;
+    margin-bottom: -2em;
     
 }
 
@@ -277,7 +278,7 @@ option selected{
 
 .search-button {
     display: inline-block;
-    margin-left: 2em;
+    margin-left: 1em;
     border-radius: 80px;
     width: 12em;
     height: 3.2em;
@@ -287,6 +288,7 @@ option selected{
     font-weight: 600;
     font-size: 16px;
     padding-top: -4px;
+    cursor: pointer;
 }
 
 #selected-collection{

@@ -10,6 +10,7 @@ import AddCollection from '../views/AddCollection.vue'
 import BooksInCollection from '../views/BooksInCollection.vue'
 import Collections from '../views/Collections.vue'
 import PublicComicList from '../views/PublicComicList.vue'
+import Leaderboards from '../views/Leaderboards.vue'
 
 Vue.use(Router)
 
@@ -82,6 +83,11 @@ const router = new Router({
       path: "/public-comic-list/:collectionId",
       name: "public-comic-list",
       component: PublicComicList
+    },
+    {
+      path: "/leaderboards",
+      name: "leaderboards",
+      component: Leaderboards
     }
     
   ]

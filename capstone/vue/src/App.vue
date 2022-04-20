@@ -3,8 +3,10 @@
     <div class="bg-image">
     <div id="nav">
     <router-link class="nav-btn1" v-bind:to="{ name: 'home' }">Home</router-link>
+    <router-link class="nav-btn3" v-bind:to="{ name: 'leaderboards' }">Leaderboards</router-link>
     <router-link class="nav-btn2" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     <router-link class="nav-btn2" v-bind:to="{ name: 'login' }" v-else>Login</router-link>
+
     </div>
     <router-view />
   </div>

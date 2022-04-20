@@ -17,13 +17,19 @@
             </div>
         </div>
     </div>
-    <div class="stats">
-        <h4>Statistics:</h4>
-        <div class="character" v-for="character in characters" v-bind:key="character.id">
-        <p>{{character.name}}: {{character.issueCount}}</p>
+    <!-- <div class="leaderboard-container">
+        <div class="columns">
+        <h4 class="leaderboard-title">Statistics:</h4>
+        <div class="leaders-container">
+        <div class="leaders" v-for="character in characters" v-bind:key="character.id">
+        <div class="leader-stats">
+            <p class="leaders" id="leader-name">{{character.name}}</p> <p class="leaders"> {{character.issueCount}}</p>
+           </div>
+        </div>
         </div>
         <p>Total Number of book in this Collection: {{totalComic.totalComicCount}}</p>
-    </div>
+        </div>
+    </div> -->
 
 </div>
 </template>
@@ -87,18 +93,6 @@ export default {
     background-color:white;
 }
 
-.stats{
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-}
-
-.stats .character{
-    display: flex;
-    flex-wrap: wrap;
-    margin:10px;
-    height: 50px;
-}
 
 .circle-btn-content-delete {
     display: flex;

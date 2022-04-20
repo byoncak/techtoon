@@ -2,7 +2,7 @@
   <div id="register" class="text-center">
     <register-hero/>
     <div class="form-center">
-    <form class="form-register" @submit.prevent="register">
+    <form class="signin-form" @submit.prevent="register">
       <div class="logo-container">
         <img class="login-logo" :src="image"/>
       </div>
@@ -37,7 +37,7 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <router-link class="need-an-account" :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
@@ -106,6 +106,23 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 4em;
+}
+.signin-form {
+
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: 600;
+    row-gap: 1em;
+    }
+
+.need-an-account {
+  color:black
 }
 
 </style>
