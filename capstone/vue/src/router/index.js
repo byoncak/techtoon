@@ -74,12 +74,12 @@ const router = new Router({
       component: Collections
     },
     {
-      path: "/book-in-collection",
+      path: "/book-in-collection/:collectionId",
       name: "books-in-collection",
       component: BooksInCollection
     },
     {
-      path: "/public-comic-list",
+      path: "/public-comic-list/:collectionId",
       name: "public-comic-list",
       component: PublicComicList
     }

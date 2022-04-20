@@ -55,4 +55,8 @@ getCharacterStats(){
   return axios.get('/collections/stats/characters')
 },
 
+getCoverImage(id){
+  return axios.get(`/collections/${id}/comicsImages`)
+},
+
 }

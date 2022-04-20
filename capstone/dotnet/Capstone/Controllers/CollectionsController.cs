@@ -126,6 +126,14 @@ namespace Capstone.Controllers
             collectionDao.DeleteComicFromCollection(comicId, collectionId);
         }
 
+        //[HttpGet("{id}/comicsImages")]
+        //public List<Comic> GetCollectionImage(int collectionId)
+        //{
+        //    string user = User.FindFirst("sub").Value;
+        //    int userNumber = Convert.ToInt32(user);
+        //    return collectionDao.GetCollectionImage(collectionId,userNumber);
+        //}
+
 
     }
 }

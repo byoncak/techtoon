@@ -218,7 +218,29 @@ namespace Capstone.DAO
             }
             return collections;
         }
-        
+
+        // public List<Comic> GetCollectionImage(int userId, int collectionId)
+        // {
+        //     List<Comic> collectionsImage = new List<Comic>();
+        //     using (SqlConnection conn = new SqlConnection(connectionString))
+        //     {
+        //         conn.Open();
+        //         SqlCommand cmd = new SqlCommand("SELECT TOP(5) c.cover_img FROM collections co " +
+        //             "JOIN comics_collections cc ON co.collection_id=cc.collection_id " +
+        //             "JOIN comics c ON c.comic_id=cc.comic_id WHERE user_id =@user_id AND co.collection_id=@collection_id; ", conn);
+        //         cmd.Parameters.AddWithValue("@user_id", userId);
+        //         cmd.Parameters.AddWithValue("@collection_Id", collectionId);
+        //         SqlDataReader reader = cmd.ExecuteReader();
+        //         while (reader.Read())
+        //         {
+        //             Comic comic= GetCollectionImageFromReader(reader);
+        //             collectionsImage.Add(comic);
+
+        //         }
+        //     }
+        //     return collectionsImage;
+        // }
+
         //THIS IS A BASIC STATS QUERY WE CAN TEST OUR FRONT END WITH
         public Statistics TotalComicsInCollection(int collectionId)
         {
@@ -352,6 +374,15 @@ namespace Capstone.DAO
 
             };
 
+            return comic;
+        }
+
+        private Comic GetCollectionImageFromReader(SqlDataReader reader)
+        {
+            Comic comic = new Comic()
+            {
+                CoverImage = Convert.ToString(reader["cover_img"]),
+            };
             return comic;
         }
 

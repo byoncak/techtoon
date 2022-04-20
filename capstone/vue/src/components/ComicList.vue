@@ -1,13 +1,6 @@
 <template>
 <div class="comic-list-page">
-    <h4>Leader Board</h4>
-    <div v-for="user in userStats" v-bind:key="user.id">
-        <p>User: {{user.userName}} || Number of Comics:{{user.totalCount}}</p>
-    </div>
-    <h4>Most Pop Character</h4>
-    <div v-for="character in characterStats" v-bind:key="character.id">
-        <p>{{character.name}} || {{character.issueCount}}</p>
-    </div>
+    <leader-board />
     <div class="search-bar">
         <form v-on:submit.prevent>
         <input class="search-form-control" name="searchTitle" type="text" v-model="searchTitle" placeholder="Search for Comic" v-on:keyup.enter="searchByTitle"/>
@@ -44,8 +37,10 @@
 
 <script>
 import localService from '@/services/LocalService';
+import LeaderBoard from './LeaderBoard.vue';
 
 export default {
+  components: { LeaderBoard },
     name:"comic-list",
     data(){
         return{
@@ -53,8 +48,6 @@ export default {
             collections:[],
             selectedCollection:'',
             searchTitle:'',
-            userStats:[],
-            characterStats:[],
         }
     },
     created(){
@@ -63,12 +56,6 @@ export default {
                 });
         localService.getCollection().then(response => {
                 this.collections = response.data;
-                });
-        localService.getTotalComicsStats().then(response => {
-                this.userStats = response.data;
-                });
-        localService.getCharacterStats().then(response => {
-                this.characterStats = response.data;
                 });
     },
     methods:{
@@ -124,12 +111,6 @@ export default {
                     });
                     localService.getCollection().then(response => {
                     this.collections = response.data;
-                    });
-                    localService.getTotalComicsStats().then(response => {
-                    this.userStats = response.data;
-                    });
-                    localService.getCharacterStats().then(response => {
-                    this.characterStats = response.data;
                     });
                     alert("Sorry...Nothing was found");
                  }

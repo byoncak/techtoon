@@ -2,7 +2,7 @@
   <div class="collection-list">
       <h1>My Collections</h1>
     <div class v-for="collection in collections" v-bind:key="collection.id"> 
-        <router-link :to="{ name:'books-in-collection', params:{collectionId: collection.collectionId} }">
+        <router-link :to="{name:'books-in-collection', params:{collectionId: collection.collectionId}}">
             <p>{{collection.collectionId}} {{collection.collectionName}} {{collection.isPublic ? 'Private':'Public'}}</p>
         </router-link>
     </div>
@@ -23,7 +23,7 @@ export default {
     data(){
         return{
             collections: [],
-            otherCollections:[]
+            otherCollections:[],
         }
     },
     created(){
@@ -34,10 +34,14 @@ export default {
                 this.otherCollections=response.data
                 });
     },
-        
+    // methods:{
+    //     getImage(collection){
+    //         localService.getCoverImage(collection.collectionId).then(response => {
+    //             this.images=response.data;
+    //             });
+    //     }
 
-
-}
+    }  
 </script>
 
 <style>
