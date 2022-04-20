@@ -58,8 +58,7 @@ export default {
     methods:{
         flipComic(comicId){
             let comic = document.getElementById(comicId);
-            comic.classList.toggle("isFlipped");
-            comic.classList.toggle("back");            
+            comic.classList.toggle("isFlipped");            
         },
         resetSelect(select){
             select.selectIndex = 0;
@@ -127,6 +126,11 @@ export default {
 
 
 <style>
+
+.back {
+    transform: rotateY(180deg);
+}
+
 .isFlipped{
     transform: rotateY(-180deg);
     transition: transform 1s;
@@ -209,13 +213,30 @@ export default {
     transition: all 1s;
     transform-style: preserve-3d;
     perspective: 1000px;
-    
 }
+
+.cover-img-container.isFlipped {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    transition: all 1s;
+    margin-left: 0em;
+    margin-right: 1.8em;
+    border-radius: .2em;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    background: blueviolet;
+    max-width:216px;
+    max-height:320px;
+}
+
+
 
 .cover-img {
     transition: margin .3s ease-in-out;
     border-radius: 4.8px;
     box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, .4);
+    backface-visibility: hidden;
     
 }
 
