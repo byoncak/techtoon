@@ -8,7 +8,7 @@
     </div>
     <h1>Other Public Collections</h1>
     <div v-for="otherCollection in otherCollections" v-bind:key="otherCollection.id"> 
-    <router-link :to="{ name:'books-in-collection', params:{collectionId: otherCollection.collectionId} }">
+    <router-link :to="{ name:'public-comic-list', params:{collectionId: otherCollection.collectionId} }">
             <p>{{otherCollection.collectionId}} {{otherCollection.collectionName}} {{otherCollection.isPublic ? 'Private':'Public'}}</p>
     </router-link>
     </div>
