@@ -27,5 +27,10 @@ namespace Capstone.Models
             CoverImage = coverImage;
         }
 
+        public class Image
+        {
+            public string CoverImage { get; set; }
+        }
+
     }
 }

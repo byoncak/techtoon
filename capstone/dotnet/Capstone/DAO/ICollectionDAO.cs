@@ -34,7 +34,7 @@ namespace Capstone.DAO
 
         public List<Statistics.CharacterStats> GetCharacterForLeaderBoard();
 
-        //public List<Comic> GetCollectionImage(int userId, int collectionId);
+        public List<Comic.Image> GetCollectionImage(int userId, int collectionId);
 
     }
 }

@@ -14,5 +14,6 @@ namespace Capstone.Models
         public bool IsPublic { get; set; }
 
 
+
     }
 }
