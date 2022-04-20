@@ -15,7 +15,7 @@
   <div class="comic-list-container">
       <div class="comic-list" v-for="comic in comics" v-bind:key="comic.id"> 
         <div class="comic-card">
-            <div class="cover-img-container" v-on:click="flipComic(comic.coverImage)">
+            <div class="cover-img-container" v-on:click="flipComic(comic.coverImage)" :id="comic.coverImage">
                 <img class="cover-img" :src="comic.coverImage" :id="comic.coverImage">
             </div>
             <div class="circle-btn-container">
@@ -59,6 +59,7 @@ export default {
         flipComic(comicId){
             let comic = document.getElementById(comicId);
             comic.classList.toggle("isFlipped");
+            comic.classList.toggle("back");            
         },
         resetSelect(select){
             select.selectIndex = 0;
@@ -127,9 +128,13 @@ export default {
 
 <style>
 .isFlipped{
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    margin-right: 2em;
+    margin-left: -2em;
+    transition: margin 1s ease-in-out;
 }
-
 
 .circle-btn-container{
     display:flex;
@@ -177,9 +182,6 @@ export default {
     margin-right: 12vw;
     flex-wrap: wrap;
     justify-content: center;
-    perspective: 1000px;
-
-
 }
 
 .circle-btn-content {
@@ -189,24 +191,23 @@ export default {
 }
 
 .comic-list {
-    margin-right: -1em;
     display: flex;
     justify-content: flex-start;
-    transition: transform 2s;
-    transform-style: preserve-3d;
 }
 .cover-img-container {
     display: flex;
     cursor: pointer;
-    z-index: 3;
+    z-index: 1;
     margin-top:0em;
     max-width: 260px;
     height: 320px;
     width: 260px;
     margin-bottom: -3em;
     justify-content: flex-start;
-    transition: transform 1s;
+    transition: all 1s;
     transform-style: preserve-3d;
+    perspective: 1000px;
+    
 }
 
 .cover-img {
@@ -227,11 +228,12 @@ export default {
   align-content: flex-start;
   justify-content: flex-start;
   font-size: 1.5rem;
+  margin-right: -.4em;
   z-index: 1;
   margin-top: 2em;
   margin-bottom: -3em;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
+  perspective: 800px;
+  transition: all 0.4s ease 0s;
 }
 
 .title-block {
