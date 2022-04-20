@@ -1,9 +1,9 @@
 <template>
   <div>
-      <book-in-collection v-bind:collectionId="parseInt(this.$route.params.collectionId)"/>
       <div class="back-to-collection">
       <router-link :to="{ name:'collections' }"> Back to Collection </router-link>
       </div>
+      <book-in-collection v-bind:collectionId="parseInt(this.$route.params.collectionId)"/>
   </div>
 </template>
 
