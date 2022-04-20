@@ -26,7 +26,7 @@
                 </select>
             </div>
             <div class="title-block">
-                <p class="comic-title">{{comic.title}}</p>
+                <p class="comic-title">{{comic.title.split("(").shift()}}</p>
             </div>
         </div>
         </div>
@@ -135,6 +135,8 @@ export default {
     margin-left: -2em;
     transition: margin 1s ease-in-out;
 }
+
+
 
 .circle-btn-container{
     display:flex;
