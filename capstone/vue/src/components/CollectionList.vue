@@ -10,7 +10,7 @@
     <h1>Other Public Collections</h1>
     <div v-for="otherCollection in otherCollections" v-bind:key="otherCollection.id"> 
     <router-link :to="{ name:'public-comic-list', params:{collectionId: otherCollection.collectionId} }">
-            <p>{{getImages(otherCollection.collectionId)}} {{otherCollection.collectionName}} {{otherCollection.isPublic ? 'Private':'Public'}}</p>
+            <p>{{otherCollection.collectionId}} {{otherCollection.collectionName}} {{otherCollection.isPublic ? 'Private':'Public'}}</p>
     </router-link>
     </div>
     </div>
@@ -35,11 +35,6 @@ export default {
                 this.otherCollections=response.data
                 });
     },
-    methods: {
-        getImages(id){
-            
-        }
-    }
         
 
 
