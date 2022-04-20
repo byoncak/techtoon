@@ -15,8 +15,8 @@
   <div class="comic-list-container">
       <div class="comic-list" v-for="comic in comics" v-bind:key="comic.id"> 
         <div class="comic-card">
-            <div class="cover-img-container">
-                <img class="cover-img" :src="comic.coverImage">
+            <div class="cover-img-container" v-on:click="flipComic(comic.coverImage)">
+                <img class="cover-img" :src="comic.coverImage" :id="comic.coverImage">
             </div>
             <div class="circle-btn-container">
                 <select name="" class="circle-btn" style="border-radius:100%;" id="selected-collection" v-model="selectedCollection" v-on:change="addComic(comic)" >
@@ -56,6 +56,10 @@ export default {
                 });
     },
     methods:{
+        flipComic(comicId){
+            let comic = document.getElementById(comicId);
+            comic.classList.toggle("isFlipped");
+        },
         resetSelect(select){
             select.selectIndex = 0;
         },
@@ -122,6 +126,9 @@ export default {
 
 
 <style>
+.isFlipped{
+    transform: rotateY(180deg);
+}
 
 
 .circle-btn-container{
@@ -170,6 +177,7 @@ export default {
     margin-right: 12vw;
     flex-wrap: wrap;
     justify-content: center;
+    perspective: 1000px;
 
 
 }
@@ -184,6 +192,8 @@ export default {
     margin-right: -1em;
     display: flex;
     justify-content: flex-start;
+    transition: transform 2s;
+    transform-style: preserve-3d;
 }
 .cover-img-container {
     display: flex;
@@ -195,6 +205,8 @@ export default {
     width: 260px;
     margin-bottom: -3em;
     justify-content: flex-start;
+    transition: transform 1s;
+    transform-style: preserve-3d;
 }
 
 .cover-img {
@@ -217,7 +229,9 @@ export default {
   font-size: 1.5rem;
   z-index: 1;
   margin-top: 2em;
-  margin-bottom: -3em
+  margin-bottom: -3em;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 }
 
 .title-block {

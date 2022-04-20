@@ -8,11 +8,13 @@
         </router-link>
         
     </div>
-    <!-- <div class v-for="image in images" v-bind:key="image.id"> 
+    <!-- <div class v-for="image in images" v-bind:key="image.id">  -->
+        <!-- <div class v-for="item in image" v-bind:key="item.key">
             <div class="cover-img-container">
-                <img class="cover-img" :src="image.coverImage">
+                <img class="cover-img" :src="item.coverImage">
             </div>
-    </div> -->
+        </div> -->
+    <!-- </div>    -->
     <h1>Other Public Collections</h1>
     <div v-for="otherCollection in otherCollections" v-bind:key="otherCollection.id"> 
     <router-link :to="{ name:'public-comic-list', params:{collectionId: otherCollection.collectionId} }">
@@ -49,11 +51,6 @@ export default {
                 this.images=response.data;
                 });
         },
-        // localService.getCollectionById(id).then(response =>{
-        //         this.images=response.data;
-        //     });
-
-        // }
     },
 }
 
