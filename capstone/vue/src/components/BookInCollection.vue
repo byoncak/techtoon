@@ -37,7 +37,7 @@
 <script>
 import localService from '@/services/LocalService';
 export default {
-    name:"bookInCollection",
+    name:"book-in-collection",
     props:['collectionId'],
     data(){
         return{
