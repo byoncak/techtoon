@@ -12,13 +12,13 @@
             </div>
         </div>
     </div>
-    <div class="stats">
+    <!-- <div class="stats">
         <h4>Statistics:</h4>
         <div class="character" v-for="character in characters" v-bind:key="character.id">
         <p>{{character.name}}: {{character.issueCount}}</p>
         </div>
         <p>Total Number of book in this Collection: {{totalComic.totalComicCount}}</p>
-    </div>
+    </div> -->
 
 </div>
 </template>

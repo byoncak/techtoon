@@ -35,8 +35,6 @@ export default {
                 this.otherCollections=response.data
                 });
     },
-    methods: {
-    }
         
 
 
