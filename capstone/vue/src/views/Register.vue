@@ -1,6 +1,11 @@
 <template>
   <div id="register" class="text-center">
+    <register-hero/>
+    <div class="form-center">
     <form class="form-register" @submit.prevent="register">
+      <div class="logo-container">
+        <img class="login-logo" :src="image"/>
+      </div>
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
@@ -37,14 +42,17 @@
         Create Account
       </button>
     </form>
+    </div>
   </div>
 </template>
 
 <script>
 import authService from '../services/AuthService';
+import RegisterHero from '../components/RegisterHero.vue'
 
 export default {
   name: 'register',
+  components: {RegisterHero},
   data() {
     return {
       user: {
@@ -90,4 +98,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.form-center {
+  flex-direction: column;
+  display:flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4em;
+}
+
+</style>
