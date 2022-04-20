@@ -1,6 +1,5 @@
 <template>
 <div class="comic-list-page">
-    <leader-board />
     <div class="search-bar">
         <form v-on:submit.prevent>
         <input class="search-form-control" name="searchTitle" type="text" v-model="searchTitle" placeholder="Search for Comic" v-on:keyup.enter="searchByTitle"/>
@@ -37,10 +36,8 @@
 
 <script>
 import localService from '@/services/LocalService';
-import LeaderBoard from './LeaderBoard.vue';
 
 export default {
-  components: { LeaderBoard },
     name:"comic-list",
     data(){
         return{
