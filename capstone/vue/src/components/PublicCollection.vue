@@ -1,13 +1,13 @@
 <template>
-<div class="book">
+<div class="collections-list">
  <div class="comic-list-container">
       <div class="comic-list" v-for="comic in books" v-bind:key="comic.id" > 
         <div class="comic-card">
-            <div class="comic-card__face comic-card__front" >
-            <div class="cover-img-container public" :id="comic.coverImage" v-bind:key="comic.id" v-on:click="flipComic(comic.coverImage)">
+            <div class="comic-card__face comic-card__front public" >
+            <div class="cover-img-container" :id="comic.coverImage" v-bind:key="comic.id" v-on:click="flipComic(comic.coverImage)">
                 <img class="cover-img" :src="comic.coverImage" :id="comic.coverImage">
             </div>
-            <div class="comic-card__face comic-card__back" v-bind:key="comic.id" v-on:click="flipComic(comic.coverImage)">
+            <div class="comic-card__face comic-card__back public" v-bind:key="comic.id" v-on:click="flipComic(comic.coverImage)">
             <div class="title-block">
                 <h3 class="comic-title">{{comic.title.split('(').shift()}}</h3>
                 <h3 class="comic-title">{{comic.title.split(')').pop()}}</h3> 
@@ -15,6 +15,7 @@
             </div>
         </div>
         </div>
+    </div>
     </div>
       <div class="stat-container">
         <div class="stat-columns">
@@ -29,10 +30,6 @@
         <p class="stat-leaders">Total Number of book in this Collection: </p><p class="stat-leaders">{{totalComic.totalComicCount}}</p>
         </div>
     </div>
-    </div>
-
-
-
     </div>
     
     <!-- <div class="leaderboard-container">
@@ -110,9 +107,7 @@ export default {
 </script>
 
 <style>
-.book{
-    background-color:white;
-}
+
 
 .stats{
     display: flex;
@@ -120,12 +115,88 @@ export default {
     width: 300px;
 }
 
-.cover-image-container.public{
-    padding-top: 2em;
+.comic-card__face.comic-card__back.public{
+    margin-top: 0em;
 }
 
+.tagline{
+    color:blueviolet;
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    margin-top:2em;
+    margin-bottom: -4em;
+}
 
+.big-title {
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    color:blueviolet;
+    font-size: 56px;
+    margin-bottom: 1em;
+    font-weight:900;
 
+}
+
+.stat-container{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;    
+    justify-content: center;
+    background-color: white;
+
+}
+.stat-columns{
+    border-radius: 4em;
+    outline: 2px solid blueviolet;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin-top:2em;
+}
+
+.stat-leaders-container{
+    margin-top: 2em;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#stat-leader-name{
+    display: flex;
+    font-weight: 800;
+    background-color: cyan;
+    color: darkblue;
+}
+
+.stat-leaders{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 24px;
+    margin-top: -1em;
+    margin-bottom: 1.6em;
+    background-color: white;
+    margin-right: .4em;
+}
+
+.stat-title{
+    color:blueviolet;
+    font-size: 40px;
+    font-weight: 800;
+    display:flex;
+    justify-content:center;
+    margin-bottom: 1em;
+}
+
+.stat-leader-stats{
+    align-content: center;
+    justify-items: center;
+    display: flex;
+}
 
 
 </style>

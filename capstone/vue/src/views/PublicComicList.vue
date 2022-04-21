@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="pub">
+    <router-link class="back-to" :to="{ name:'collections' }"> Back to Collection </router-link>
       <public-collection v-bind:collectionId="parseInt(this.$route.params.collectionId)"/>
       <div class="public-collection">
-      <router-link :to="{ name:'collections' }"> Back to Collection </router-link>
       </div>
   </div>
 </template>
@@ -19,6 +19,17 @@ export default {
 </script>
 
 <style>
+
+.back-to{
+  display: flex;
+  justify-content: left;
+  padding: 2em;
+}
+
+.pub{
+  background-color: white;
+}
+
 .back-to-collection{
 background-color: white;
 }
