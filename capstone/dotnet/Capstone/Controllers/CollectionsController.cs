@@ -66,6 +66,7 @@ namespace Capstone.Controllers
             return Created($"/collection/{added.CollectionId}", added);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}/comics")]
         public List<Comic> GetComicsInCollection(int id)
         {
@@ -96,7 +97,7 @@ namespace Capstone.Controllers
 
            return collectionDao.AddComicToCollection(comicToAdd.ComicId, id);
         }
-
+        [AllowAnonymous]
         [HttpGet("{id}/stats/characters")]
         public List<Statistics.CharacterStats> CharacterStatsForCollection(int id)
         {
@@ -114,7 +115,8 @@ namespace Capstone.Controllers
         {
             return collectionDao.GetCharacterForLeaderBoard();
         }
-        
+
+        [AllowAnonymous]
         [HttpGet("{id}/stats")]
         public Statistics TotalComicsInCollection(int id)
         {
