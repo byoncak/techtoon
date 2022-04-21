@@ -113,7 +113,8 @@ export default {
             });
              },
       searchByTitle(){
-          localService.searchComicByTitle({params:{titleSearch:this.searchTitle}}).then(response =>{
+          if(this.searchTitle!=''){
+            localService.searchComicByTitle({params:{titleSearch:this.searchTitle}}).then(response =>{
              if(response.status===200){
                  this.comics=response.data;
                  this.searchTitle='';
@@ -125,12 +126,14 @@ export default {
                     this.collections = response.data;
                     });
                     alert("Sorry...Nothing was found");
-                 }
-             }
+                    }
+                    }
              
-      })
-    },
-}
+                })
+            }
+          
+        },
+    }
 }
 </script>
 
