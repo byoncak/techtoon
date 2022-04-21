@@ -15,18 +15,23 @@
   <div class="comic-list-container">
       <div class="comic-list" v-for="comic in comics" v-bind:key="comic.id"> 
         <div class="comic-card">
-            <div class="cover-img-container" v-on:click="flipComic(comic.coverImage)" :id="comic.coverImage">
+            <div class="comic-card__face comic-card__front" >
+            <div class="cover-img-container" :id="comic.coverImage" v-bind:key="comic.id" v-on:click="flipComic(comic.coverImage)">
                 <img class="cover-img" :src="comic.coverImage" :id="comic.coverImage">
             </div>
             <div class="circle-btn-container">
-                <select name="" class="circle-btn" style="border-radius:100%;" id="selected-collection" v-model="selectedCollection" v-on:change="addComic(comic)" >
+                <select class="circle-btn" style="border-radius:100%;" id="selected-collection" v-model="selectedCollection" v-on:click.prevent="flipComic()" v-on:change="addComic(comic)" >
                     <optgroup label = "Add To Collection:">
                     <option v-for="collection in collections" v-bind:key="collection.id" :value="collection.collectionId">{{collection.collectionName}}</option>
                     </optgroup>
                 </select>
             </div>
+            </div>
+            <div class="comic-card__face comic-card__back"  v-bind:class="{ 'isFlipped': flipped }" :id="comic.coverImage" v-bind:key="comic.id" v-on:click="flipComic(comic.coverImage)">
             <div class="title-block">
-                <p class="comic-title">{{comic.title.split("(").shift()}}</p>
+                <h3 class="comic-title">{{comic.title.split('(').shift()}}</h3>
+                <h3 class="comic-title">{{comic.title.split(')').pop()}}</h3> 
+            </div>
             </div>
         </div>
         </div>
@@ -45,6 +50,7 @@ export default {
             collections:[],
             selectedCollection:'',
             searchTitle:'',
+            flipped: false,
         }
     },
     created(){
@@ -57,9 +63,14 @@ export default {
     },
     methods:{
         flipComic(comicId){
-            let comic = document.getElementById(comicId);
-            comic.classList.toggle("isFlipped");            
+            let thisComic = document.getElementById(comicId);
+            thisComic.classList.toggle("isFlipped");
+            if(this.flipped === false){
+            this.flipped === true;
+            }
+            else{this.flipped === false}
         },
+
         resetSelect(select){
             select.selectIndex = 0;
         },
@@ -127,25 +138,24 @@ export default {
 
 <style>
 
-.back {
-    transform: rotateY(180deg);
+.hidden{
+    opacity: 0;
 }
 
 .isFlipped{
-    transform: rotateY(-180deg);
+    transform:  translateX(-10%) rotateY(-180deg);
     transition: transform 1s;
     transform-style: preserve-3d;
-    margin-right: 2em;
-    margin-left: -2em;
-    transition: margin 1s ease-in-out;
+    position: relative;
 }
-
 
 
 .circle-btn-container{
     display:flex;
-    margin-left: 6em;
-    margin-bottom: 1em;
+    position: absolute;
+    z-index: 5;
+    margin-left: 34%;
+    margin-top: 100%;
     transition: height, width .2s ease-in;
 }
 
@@ -160,6 +170,7 @@ export default {
 }
 
 .circle-btn {
+    display: flex;
     transition: background-color .2s ease-in;
     font-family: Arial, Helvetica, sans-serif;
     font-size:xx-large;
@@ -173,7 +184,8 @@ export default {
     box-shadow: 0 4px 12px 4px rgba(0, 0, 0, 1);
     border-color: lightskyblue;
     cursor:pointer;
-    margin-top: 0em;
+    margin-left: 2em;
+    margin-top: 1em;
     position: absolute;
 }
 
@@ -184,19 +196,22 @@ export default {
 
 .comic-list-container{
     display: flex;
-    margin-left:12vw;
-    margin-right: 12vw;
-    flex-wrap: wrap;
+    margin-left: 12em;
+    margin-right: 12em;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .circle-btn-content {
+    display: flex;
     padding-left: 80px;
     z-index: 5;
     background-color: blueviolet;
 }
 
 .comic-list {
+
+    flex-wrap: wrap;
     display: flex;
     justify-content: flex-start;
 }
@@ -205,39 +220,27 @@ export default {
     cursor: pointer;
     z-index: 1;
     margin-top:0em;
-    max-width: 260px;
+    max-width: 210px;
     height: 320px;
-    width: 260px;
+    width: 210px;
     margin-bottom: -3em;
     justify-content: flex-start;
     transition: all 1s;
     transform-style: preserve-3d;
     perspective: 1000px;
+ 
+
 }
-
-.cover-img-container.isFlipped {
-    display: flex;
-    cursor: pointer;
-    justify-content: center;
-    transition: all 1s;
-    margin-left: 0em;
-    margin-right: 1.8em;
-    border-radius: .2em;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    background: blueviolet;
-    max-width:216px;
-    max-height:320px;
-}
-
-
 
 .cover-img {
     transition: margin .3s ease-in-out;
     border-radius: 4.8px;
     box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, .4);
     backface-visibility: hidden;
-    
+    width: 260px;
+    max-width: 210px;
+    overflow:hidden; 
+    box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, .4);  
 }
 
 .cover-img.active,
@@ -247,35 +250,84 @@ export default {
     margin-top: -.4em;
 }
 
-.comic-card {
+.comic-card__front {
+  display: flex;
   align-content: flex-start;
   justify-content: flex-start;
   font-size: 1.5rem;
-  margin-right: -.4em;
   z-index: 1;
   margin-top: 2em;
-  margin-bottom: -3em;
+  margin-bottom: 0em;
   perspective: 800px;
   transition: all 0.4s ease 0s;
+  max-width: 240px;
+  max-height: 360px;
+}
+
+.comic-card {
+    display: flex;
+      transform-origin: center right;
+      transition: transform 1s;
+      position: relative;
+      margin-bottom: 22em;
+      margin-right: 16em;
+      max-height: 320px;
+      max-width: 240px;
+      
+}
+
+.comic-card__face{
+    display: flex;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.comic-card__back {
+  border-radius: .4em;;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  font-size: 1.5rem;
+  margin-left:0;
+  z-index: 0;
+  margin-top: 2em;
+  margin-bottom: 0em;
+  perspective: 800px;
+  transition: transform 1s ease 0s;
+  max-width: 232px;
+  background-color: blueviolet;
+  height: 320px;
 }
 
 .title-block {
-    z-index: 0;
     display: flex;
-    margin-top: 2.4em;
+    cursor: pointer;
+    flex-direction: column;
+    z-index: 0;
+    margin-top:0em;
+    max-width: 212px;
+    height: 310px;
+    width: 212px;
+    justify-content: center;
+    align-content: center;
+    transition: all 1s;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .comic-title {
-    margin-top: 2.4em;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    color: black;
+    display: flex;
+    justify-items: center;
+    transition: all 1s;
+    color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: .80rem;
-    font-weight: 800;
+    font-weight: 600;
     cursor: pointer;
-    max-width: 220px;
+    margin-left: 2em;
+    max-width: 160px;
     z-index: 0;
+    perspective: 1000px;
 }
 
 .search-bar {

@@ -6,7 +6,6 @@
       <div class="logo-container">
         <img class="login-logo" :src="image"/>
       </div>
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -99,6 +98,10 @@ export default {
 </script>
 
 <style>
+#create-title{
+  margin-top: -2em;
+}
+
 .form-center {
   flex-direction: column;
   display:flex;
@@ -119,10 +122,15 @@ export default {
     color: white;
     font-weight: 600;
     row-gap: 1em;
+    margin-bottom: 8em;
     }
 
 .need-an-account {
   color:black
+}
+
+.text-center{
+  margin-bottom: 4em;
 }
 
 </style>

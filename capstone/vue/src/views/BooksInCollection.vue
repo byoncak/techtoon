@@ -3,16 +3,15 @@
       <div class="back-to-collection">
       <router-link :to="{ name:'collections' }"> Back to Collection </router-link>
       </div>
-      <book-in-collection v-bind:collectionId="parseInt(this.$route.params.collectionId)"/>
-      <stats v-bind:collectionId="parseInt(this.$route.params.collectionId)"/>
+      <book-in-collection class="book-in-collection" v-bind:collectionId="parseInt(this.$route.params.collectionId)"/>
+      
   </div>
 </template>
 
 <script>
 import BookInCollection from '../components/BookInCollection.vue'
-import Stats from '../components/Stats.vue'
 export default {
-  components: { BookInCollection, Stats },
+  components: { BookInCollection},
     name:'books-in-collection',
 
 
@@ -22,6 +21,16 @@ export default {
 <style>
 .back-to-collection{
 background-color: white;
+display: flex;
+justify-content: center;
+padding-top:2em;
+padding-bottom: 1em;
+}
+
+.book-in-collection{
+  background-color: white;
+  padding-bottom: 2em;
+  
 }
 
 </style>

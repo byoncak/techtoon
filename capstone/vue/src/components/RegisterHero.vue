@@ -10,7 +10,7 @@
     </div>
     <div class="sign-in-title-block">
     <div class="sign-in-title">
-    Please Make An Account!
+    Please Create An Account
     </div>
     </div>
 </div>
