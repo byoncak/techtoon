@@ -30,7 +30,9 @@
             <div class="comic-card__face comic-card__back"  v-bind:class="{ 'isFlipped': flipped }" :id="comic.coverImage" v-bind:key="comic.id" v-on:click="flipComic(comic.coverImage)">
             <div class="title-block">
                 <h3 class="comic-title">{{comic.title.split('(').shift()}}</h3>
-                <h3 class="comic-title">{{comic.title.split(')').pop()}}</h3> 
+                
+                <h3 class="comic-title">Issue #{{comic.issueNumber}}</h3>
+                <h3 class="comic-title">{{comic.mainCharacter}}</h3> 
             </div>
             </div>
         </div>
