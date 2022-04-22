@@ -32,7 +32,7 @@
                 <h3 class="comic-title">{{comic.title.split('(').shift()}}</h3>
                 
                 <h3 class="comic-title">Issue #{{comic.issueNumber}}</h3>
-                <h3 class="comic-title">{{comic.mainCharacter}}</h3> 
+                <h3 v-if="comic.mainCharacter != 'Unknown'" class="comic-title">{{comic.mainCharacter}}</h3> 
             </div>
             </div>
         </div>
